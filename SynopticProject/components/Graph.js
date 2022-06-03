@@ -2,7 +2,7 @@ import React from 'react';
 import {
   LineChart,
 } from "react-native-chart-kit";
-import { Dimensions, StyleSheet, View, Text } from "react-native";
+import { Dimensions, StyleSheet, View, Text, Image, ImageBackground} from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
 const chartConfig = {
@@ -30,7 +30,7 @@ const data = {
 
 export default function Graph()
 {
-    return <View style={styles.container}><Text style={styles.grey}>Water Management</Text><LineChart
+    return <View style={styles.container}><View style={styles.img}><Image source={require("../assets/Water.png")} style={styles.water} /><Image source={require("../assets/Empty_Glass.png")} style={styles.glass} /></View><Text style={styles.grey}>Water Management</Text><LineChart
     data={data}
     width={screenWidth}
     height={220}
@@ -51,5 +51,25 @@ const styles = StyleSheet.create({
   },
   graph:{
     marginTop:25,
-  }
+  },
+  img:{
+    width:200,
+    height:200,
+    position:"relative",
+    overflow:"hidden",
+  },
+  water:{
+    position:"absolute",
+    width:200,
+    height:200,
+    
+    left: 5,
+    top: 50,
+  },
+  glass:{
+    position:"relative",
+     width:201,
+     height:201,
+     
+    }
 });
