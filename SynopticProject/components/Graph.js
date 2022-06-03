@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   graph:{
-    marginTop:25,
+    marginTop: 25,
   },
   glassContainer:{
     width: 200,
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   glass:{
     position: 'relative',
     width: 200,
-    height: 201,
+    height: 205,
     resizeMode: 'contain'
   }
 });
