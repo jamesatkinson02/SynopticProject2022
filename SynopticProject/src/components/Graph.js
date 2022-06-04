@@ -4,6 +4,9 @@ import {
 } from "react-native-chart-kit";
 import { Dimensions, StyleSheet, View, Text, Image, ImageBackground, Button} from "react-native";
 import RNSpeedometer from 'react-native-speedometer'
+import {shared} from '../styles/sharedSheet';
+import {waterStyles} from '../styles/waterSheet';
+
 const screenWidth = Dimensions.get("window").width;
 
 const chartConfig = {
@@ -103,35 +106,36 @@ const waterQuality = {
 
 export default function Graph()
 {
-  return <View style={styles.container}>
+  return <View style={shared.container}>
     
-    <Text style={styles.grey}>Water Management</Text>
+    <Text style={waterStyles.grey}>Water Management</Text>
          
     {/* Water capacity glass */}
-    <View style={styles.borderWrapper}>
-      <View style={styles.glassContainer}>
-        <Image source={require("../../assets/Water.png")} style={styles.water} />
-        <Image source={require("../../assets/Empty_Glass.png")} style={styles.glass} />
+    <View style={shared.borderWrapper}>
+      <View style={waterStyles.glassContainer}>
+        <Image source={require("../../assets/Water.png")} style={waterStyles.water} />
+        <Image source={require("../../assets/Empty_Glass.png")} style={waterStyles.glass} />
       </View>
-      <Text style={{color:'grey'}}>1000 / 1000 L</Text>
+      <Text style={{color:'grey'}}>1000/1000 L</Text>
     </View>
 
-    <View style={styles.borderWrapper}>
+    <View style={shared.borderWrapper}>
       <LineChart
         data={data}
         width={screenWidth}
         height={220}
         chartConfig={chartConfig}
-        style={styles.graph}
+        style={waterStyles.graph}
       />
     </View>
-    
-    <View style={styles.gridContainer}>
-      <View style={styles.borderWrapper}>
+
+    <View style={shared.gridContainer}>
+      <View style={shared.borderWrapper}>
         <RNSpeedometer labels={phLabels} minValue={3} maxValue={11} value={7} size={200}></RNSpeedometer>
+
       </View>
 
-      <View style={styles.borderWrapper}>
+      <View style={shared.borderWrapper}>
         <ProgressChart width={340} height={150} strokeWidth={16} chartConfig={progressBarConfig} radius={52} data={waterQuality} hideLegend={false}></ProgressChart>
       </View>
     </View>
@@ -142,61 +146,3 @@ export default function Graph()
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor:'#f2f5f3',
-    display:'flex',
-    justifyContent:'center',
-    alignItems: 'center',
-    flex:1,
-    position:'relative'
-  },
-  grey: {
-    color: 'grey',
-    fontSize: 30,
-  },
-  graph:{
-    padding:20,
-    marginLeft:10
-  },
-  glassContainer:{
-    width: 200,
-    height: 200,
-    overflow: 'hidden',
-  },
-  water:{
-    position: 'absolute',
-    width: 200,
-    height: 200,
-    
-    left: 0,
-    top: 100,
-  },
-  glass:{
-    position: 'relative',
-    width: 201,
-    height: 205,
-    resizeMode: 'contain'
-  },
-  borderWrapper:{
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    border: '1px solid white',
-    width:'auto',
-    height:'auto',
-    minHeight:150,
-    padding: 20,
-    margin:20,
-    borderRadius:20,
-    backgroundColor:'white'
-  },
-  gridContainer:{
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    alignContent: 'center',
-    flexDirection: 'row',
-    maxWidth: '90%',
-  }
-});
