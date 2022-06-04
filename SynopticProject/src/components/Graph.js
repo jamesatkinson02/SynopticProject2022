@@ -5,7 +5,7 @@ import {
 import { Dimensions, StyleSheet, View, Text, Image, ImageBackground, Button} from "react-native";
 import RNSpeedometer from 'react-native-speedometer'
 import {shared} from '../styles/sharedSheet';
-import {waterStyles} from '../styles/waterSheet';
+import {waterStyles} from '../styles/Modules/waterSheet';
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -94,8 +94,6 @@ const phLabels = [
     labelColor:'#348feb',
     activeBarColor:'#348feb',
   },
-  
-  
 ]
 
 const waterQuality = {
@@ -113,8 +111,8 @@ export default function Graph()
     {/* Water capacity glass */}
     <View style={shared.borderWrapper}>
       <View style={waterStyles.glassContainer}>
-        <Image source={require("../../assets/Water.png")} style={waterStyles.water} />
-        <Image source={require("../../assets/Empty_Glass.png")} style={waterStyles.glass} />
+        <Image source={require("../../assets/img/Water.png")} style={waterStyles.water} />
+        <Image source={require("../../assets/img/Empty_Glass.png")} style={waterStyles.glass} />
       </View>
       <Text style={{color:'grey'}}>1000/1000 L</Text>
     </View>
