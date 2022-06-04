@@ -110,10 +110,10 @@ export default function Graph()
     {/* Water capacity glass */}
     <View style={styles.borderWrapper}>
       <View style={styles.glassContainer}>
-        <Image source={require("../assets/Water.png")} style={styles.water} />
-        <Image source={require("../assets/Empty_Glass.png")} style={styles.glass} />
+        <Image source={require("../../assets/Water.png")} style={styles.water} />
+        <Image source={require("../../assets/Empty_Glass.png")} style={styles.glass} />
       </View>
-      <Text style={{color:'grey'}}>1000/1000 L</Text>
+      <Text style={{color:'grey'}}>1000 / 1000 L</Text>
     </View>
 
     <View style={styles.borderWrapper}>
@@ -127,7 +127,10 @@ export default function Graph()
     </View>
     
     <View style={styles.gridContainer}>
-      <RNSpeedometer labels={phLabels} minValue={3} maxValue={11} value={7} size={200} wrapperStyle={styles.borderWrapper}></RNSpeedometer>
+      <View style={styles.borderWrapper}>
+        <RNSpeedometer labels={phLabels} minValue={3} maxValue={11} value={7} size={200}></RNSpeedometer>
+      </View>
+
       <View style={styles.borderWrapper}>
         <ProgressChart width={340} height={150} strokeWidth={16} chartConfig={progressBarConfig} radius={52} data={waterQuality} hideLegend={false}></ProgressChart>
       </View>
@@ -189,9 +192,11 @@ const styles = StyleSheet.create({
     backgroundColor:'white'
   },
   gridContainer:{
-    display:'grid',
-    gridTemplateColumns: 'auto auto auto',
-    padding: 10
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    alignContent: 'center',
+    flexDirection: 'row',
+    maxWidth: '90%',
   }
-
 });
