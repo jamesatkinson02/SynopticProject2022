@@ -7,6 +7,8 @@ export const waterStyles = StyleSheet.create({
     },
 
     glassContainer:{
+      width: 200,
+      height: 195,
       overflow: 'hidden',
       position: 'relative',
     },
@@ -17,13 +19,13 @@ export const waterStyles = StyleSheet.create({
       height: 200,
       
       left: 0,
-      top: 10,
+      top: 120,
     },
 
     glass:{
       position: 'relative',
-      width: 201,
-      height: 205,
+      width: 200,
+      height: 200,
       resizeMode: 'contain'
     },
 
