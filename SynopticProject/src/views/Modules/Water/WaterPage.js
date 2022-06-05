@@ -1,9 +1,14 @@
+import { Dimensions, View, Text, Image } from "react-native";
 import PageWrapper from "../../../components/Layout/PageWrapper";
 import Card from "../../../components/Layout/Card";
-import { Dimensions, View, Text, Image } from "react-native";
+import { Grid, GridItem } from "../../../components/Layout/Grid";
 
+// Graphs
 import ContentChart from "./Graphs/ContentChart";
+import PHMeter from "./Graphs/PHMeter";
+import ClarityGraph from "./Graphs/ClarityGraph";
 
+// Style sheets
 import { shared } from "../../../styles/sharedSheet";
 import { waterStyles } from "../../../styles/Modules/waterSheet";
 import { textStyles } from "../../../styles/textSheet";
@@ -21,8 +26,16 @@ const contentData = {
   legend: ["Water (L)"] // optional
 };
 
+const qualityData = {
+  // optional
+  labels: ["Clarity: "],
+ data: [0.6],
+};
+
 const WaterPage = () => {
-  const [chartWidth, setChartWidth] = useState(0);
+  const [pHValue, setpHValue] = useState(7);
+  const [chartWrapperWidth, setChartWrapperWidth] = useState(10);
+  const [gridItemWrapperWidth, setGridItemWrapperWidth] = useState(150);
 
   return(
     <PageWrapper title={'Water management'}>
@@ -35,9 +48,19 @@ const WaterPage = () => {
         <Text style={textStyles.textDark}>1000/1000 L</Text>
       </Card>
 
-      <Card onLayout={({ nativeEvent }) => setChartWidth(nativeEvent.layout.width)}>
-        <ContentChart containerWidth={chartWidth} data={contentData}></ContentChart>
+      <Card onLayout={({ nativeEvent }) => setChartWrapperWidth(nativeEvent.layout.width)}>
+        <ContentChart containerWidth={chartWrapperWidth} data={contentData}></ContentChart>
       </Card>
+
+      <Grid centered={true}>
+        <GridItem onLayout={({ nativeEvent }) => setGridItemWrapperWidth(nativeEvent.layout.width)} containerWidth={gridItemWrapperWidth}>
+          <PHMeter containerWidth={gridItemWrapperWidth} value={pHValue}></PHMeter>
+        </GridItem>
+
+        <GridItem containerWidth={gridItemWrapperWidth}>
+          <ClarityGraph qualityData={qualityData} containerWidth={gridItemWrapperWidth}/>
+        </GridItem>
+      </Grid>
     </PageWrapper>
   );
 }
