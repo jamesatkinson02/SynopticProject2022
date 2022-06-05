@@ -16,6 +16,8 @@ export default function App() {
 
   let {token, setToken} = useToken();
 
+  console.log(token);
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
