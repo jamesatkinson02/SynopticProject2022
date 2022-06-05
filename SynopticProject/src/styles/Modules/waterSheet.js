@@ -28,6 +28,4 @@ export const waterStyles = StyleSheet.create({
       height: 200,
       resizeMode: 'contain'
     },
-
-    
   });

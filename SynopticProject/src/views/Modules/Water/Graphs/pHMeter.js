@@ -1,4 +1,9 @@
+import { Dimensions } from 'react-native';
+
 import RNSpeedometer from 'react-native-speedometer';
+import { GridItem } from '../../../../components/Layout/Grid';
+import { waterStyles } from '../../../../styles/Modules/waterSheet';
+import { shared } from '../../../../styles/sharedSheet';
 
 const phLabels = [
   {
@@ -57,16 +62,21 @@ const phLabels = [
   },
 ]
 
-const pHMeter = (props) => {
+const PHMeter = (props) => {
   return (
     <RNSpeedometer
       labels={phLabels}
       minValue={3}
       maxValue={11}
       value={props.value}
-      size={props.containerSize}
+      wrapperStyle={{
+        transform: [
+          { translateY: - props.containerWidth * 0.17 },
+        ],
+      }}
+      size={props.containerWidth - (shared.card.padding * 2)}
     />
   );
 };
 
-export default pHMeter;
+export default PHMeter;

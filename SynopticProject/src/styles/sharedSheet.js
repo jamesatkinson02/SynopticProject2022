@@ -42,6 +42,36 @@ export const shared = StyleSheet.create({
     },
   },
 
+  // components/Layout/Grid.js
+  grid: {
+    marginTop: 30,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
+  },
+
+  gridItem: {
+    minWidth: 160,
+    width: '46%',
+
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    backgroundColor: '#FFF',
+    borderRadius: 19,
+    padding: 15,
+    shadowColor: '#E5E5E5',
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+  },
+
   
   container: {
     backgroundColor:'#f2f5f3',
