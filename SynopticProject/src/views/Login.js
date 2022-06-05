@@ -1,9 +1,10 @@
 import {React, useReducer} from 'react';
+import PropTypes from 'prop-types';
 import {shared} from '../styles/sharedSheet';
-import {Text, View, Button, TextInput, Alert} from 'react-native';
+import {Text, View, Button, Alert, TextInput} from 'react-native';
 import {loginReducer} from '../reducers/loginReducer';
 import {Link} from '@react-navigation/native';
-export default function Login({navigation})
+export default function Login({setToken})
 {
     const initialFormState = {
         username: '',
@@ -11,29 +12,44 @@ export default function Login({navigation})
     }
     const [state, dispatch] = useReducer(loginReducer, initialFormState); 
 
-    const changeHandler = e => {
-        dispatch({type: 'FORM INPUT', field: e.target.name, payload: e.target.value});
+    const changeHandler = (name, e) => {
+        dispatch({type: 'FORM INPUT', field: name, payload: e.target.value});
     }
     
-    const handleSubmit = async e => {
-      
+    const handleSubmit = () =>  {
+        if(!state.username || !state.password)
+        {
+            Alert.alert("Input Error", "Please enter username and password!");
+            return;
+        }
+        fetch('http://localhost:3000/login', {
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({username:state.username, password:state.password})
+            
+        }).then(resp => resp.json()).then(token => setToken(token));
     }
    
-    return (
+    return (    
         <View style={shared.container}>
-        <Text style={{fontSize:30, color:'grey'}}>Login</Text>
-        <View style={shared.borderWrapper}>
-          <View onSubmit={handleSubmit}>
-            <TextInput style={shared.input} placeholder="Username" onChange={e => {changeHandler}} />
-            <TextInput style={shared.input} type="password" placeholder="Password" onChange={e => {changeHandler}} secureTextEntry={true}/>
-            <Button title="Login" onPress={() => Alert.alert("Login!")}></Button>
-          </View>
-          <Text style={shared.smallItalics}> Don't have an account? <Link style={shared.smallItalics} to={{ screen: 'Signup'}}>
-      Sign up here
-    </Link>
-</Text>
+            <Text style={{fontSize:30, color:'grey'}}>Login</Text>
+            <View style={shared.borderWrapper}>
+                <View>
+                    <TextInput style={shared.input} placeholder="Username" onChange={e => {changeHandler('username', e)}} />
+                    <TextInput style={shared.input} placeholder="Password" onChange={e => {changeHandler('password', e)}} secureTextEntry={true}/>
+                    <Button title="Login" onPress={() => handleSubmit()}></Button>
+                </View>
+                <Text style={shared.smallItalics}> 
+                    Don't have an account? <Link style={shared.smallItalics} to={{ screen: 'Signup'}}> Sign up here </Link>
+                </Text>
       
-        </View>
+            </View>
         </View>
     )
+}
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
 }
