@@ -72,6 +72,46 @@ export const shared = StyleSheet.create({
     },
   },
 
+  // components/Inputs/TextInput.js
+  textInput:{
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    marginBottom: 16,
+    
+    backgroundColor: '#FFF',
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#aaa',
+    width: 280,
+  },
+
+  // components/Inputs/Button.js
+  button: {
+    display: 'flex',
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    padding: 10,
+  },
+
+  buttonGreen: {
+    backgroundColor: '#3DDE87',
+  },
+  buttonBlue: {
+    backgroundColor: '#3DB6DE',
+  },
+  buttonRed: {
+    backgroundColor: '#F04936',
+  },
+  buttonOrange: {
+    backgroundColor: '#FFA339',
+  },
+
+  buttonText: {
+    fontSize: 18,
+  },
+
   
   container: {
     backgroundColor:'#f2f5f3',
@@ -102,15 +142,6 @@ export const shared = StyleSheet.create({
     flexDirection: 'row',
     maxWidth: '90%',
   },
-  input:{
-    padding:10,
-    margin:8
-  },
-  smallItalics:{
-    fontStyle:'italic',
-    fontSize:11,
-  }
-      
 })
 
 
