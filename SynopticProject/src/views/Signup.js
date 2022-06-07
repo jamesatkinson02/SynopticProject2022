@@ -12,7 +12,7 @@ export default function Signup({navigation})
     <View style={shared.container}>
         <Text style={[textStyles.header, textStyles.textDark2]}>Sign up</Text>
 
-        <Card centered={true}>
+        <Card centered={true} marginTop={30}>
             <View>
                 <RMTextInput placeholder="Username" />
                 <RMTextInput placeholder="Password" secureTextEntry={true}/>

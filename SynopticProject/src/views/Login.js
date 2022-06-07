@@ -38,10 +38,11 @@ export default function Login({setToken})
         }).then(resp => resp.json()).then(token => setToken(token));
     }
    
-    return (    
+    return (
         <View style={shared.container}>
             <Text style={[textStyles.header, textStyles.textDark2]}>Login</Text>
-            <Card centered={true}>
+
+            <Card centered={true} marginTop={30}>
                 <View>
                     <RMTextInput placeholder="Username" onChange={e => {changeHandler('username', e)}} />
                     <RMTextInput placeholder="Password" onChange={e => {changeHandler('password', e)}} secureTextEntry={true}/>

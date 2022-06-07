@@ -21,10 +21,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Water" component={WaterPage} />
         <Stack.Screen name="Login">
           {props => <Login {...props} setToken={setToken} />}
         </Stack.Screen>
-        <Stack.Screen name="Water" component={WaterPage} />
         <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>

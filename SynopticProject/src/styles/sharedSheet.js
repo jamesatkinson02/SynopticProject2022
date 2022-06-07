@@ -2,7 +2,17 @@ import {StyleSheet} from 'react-native';
 
 export const shared = StyleSheet.create({
   // Generic
-  
+  shadow: {
+    shadowColor: '#E5E5E5',
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+  },
 
   // components/Layout/PageWrapper.js
   pageScrollView: {
@@ -25,21 +35,11 @@ export const shared = StyleSheet.create({
 
   // components/Layout/Card.js
   card: {
-    marginTop: 30,
     display: 'flex',
     alignContent: 'center',
     backgroundColor: '#FFF',
     borderRadius: 16,
     padding: 30,
-    shadowColor: '#E5E5E5',
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 3,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
   },
 
   // components/Layout/Grid.js
@@ -110,6 +110,29 @@ export const shared = StyleSheet.create({
 
   buttonText: {
     fontSize: 18,
+  },
+
+  // components/Inputs/PillSelection.js
+  pillContainer: {
+    flexGrow: 1,
+  },
+  pill: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    marginHorizontal: 5,
+  },
+  pillText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
+  pillSelection: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginHorizontal: -5,
+    marginTop: 30,
   },
 
   

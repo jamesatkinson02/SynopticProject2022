@@ -2,6 +2,8 @@ import { Dimensions, View, Text, Image } from "react-native";
 import PageWrapper from "../../../components/Layout/PageWrapper";
 import Card from "../../../components/Layout/Card";
 import { Grid, GridItem } from "../../../components/Layout/Grid";
+import { Pill, PillSelection } from "../../../components/Inputs/PillSelection";
+import { useReducer } from "react";
 
 // Graphs
 import ContentChart from "./Graphs/ContentChart";
@@ -13,6 +15,8 @@ import { shared } from "../../../styles/sharedSheet";
 import { waterStyles } from "../../../styles/Modules/waterSheet";
 import { textStyles } from "../../../styles/textSheet";
 import { useState } from "react";
+
+import waterReducer from "../../../reducers/Modules/waterReducer";
 
 const contentData = {
   labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
@@ -33,13 +37,15 @@ const qualityData = {
 };
 
 const WaterPage = () => {
+  //const [state, dispatch] = useReducer(waterReducer, {});
+
   const [pHValue, setpHValue] = useState(7);
   const [chartWrapperWidth, setChartWrapperWidth] = useState(10);
   const [gridItemWrapperWidth, setGridItemWrapperWidth] = useState(150);
 
   return(
     <PageWrapper title={'Water management'}>
-      <Card centered={true}>
+      <Card centered={true} marginTop={30}>
         <View style={waterStyles.glassContainer}>
           <Image source={require("../../../../assets/img/Water.png")} style={waterStyles.water} />
           <Image source={require("../../../../assets/img/Empty_Glass.png")} style={waterStyles.glass} />
@@ -47,6 +53,12 @@ const WaterPage = () => {
         
         <Text style={textStyles.textDark}>1000/1000 L</Text>
       </Card>
+
+      <PillSelection marginTop={30} marginBottom={15}>
+        <Pill>Daily</Pill>
+        <Pill>Weekly</Pill>
+        <Pill>Monthly</Pill>
+      </PillSelection>
 
       <Card onLayout={({ nativeEvent }) => setChartWrapperWidth(nativeEvent.layout.width)}>
         <ContentChart containerWidth={chartWrapperWidth} data={contentData}></ContentChart>
