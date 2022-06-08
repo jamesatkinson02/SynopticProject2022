@@ -145,7 +145,7 @@ export const shared = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 100,
     paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingHorizontal: 35,
   },
   addButtonText: {
     fontSize: 16,

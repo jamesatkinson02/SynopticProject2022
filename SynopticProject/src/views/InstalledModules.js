@@ -1,4 +1,4 @@
-import { Text, TouchableWithoutFeedback, View } from "react-native";
+import { Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 
 import PageWrapper from "../components/Layout/PageWrapper";
 import Card from "../components/Layout/Card";
@@ -17,7 +17,7 @@ const StatisticsContainer = (props) => {
 
 const ModuleButton = (props) => {
   return (
-    <TouchableWithoutFeedback onPress={() => {}}>
+    <TouchableOpacity onPress={() => props.navigation.navigate(props.route)}>
       <Card marginTop={30}>
         <Text style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</Text>
 
@@ -25,7 +25,7 @@ const ModuleButton = (props) => {
           {props.statComponents || <></>}
         </StatisticsContainer>
       </Card>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 
@@ -33,21 +33,24 @@ const InstalledModules = (props) => {
   const [modules, setModules] = useState([
     {
       name: 'Water',
+      route: 'Water',
       statComponents: <></>,
     },
     {
       name: 'Electricity',
+      route: 'Electricity',
       statComponents: <></>,
     },
     {
       name: 'Crop quality',
+      route: 'CropQuality',
       statComponents: <></>,
     },
   ]);
 
   return (
     <PageWrapper title={'Installed modules'}>
-      { modules.map(m => <ModuleButton key={m.name} moduleName={m.name} statComponents={m.statComponents}/>) }
+      { modules.map(m => <ModuleButton key={m.name} moduleName={m.name} route={m.route} navigation={props.navigation} statComponents={m.statComponents}/>) }
       <AddButton onPress={() => {}}>+ add module</AddButton>
     </PageWrapper>
   );

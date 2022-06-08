@@ -12,6 +12,8 @@ import InstalledModules from './src/views/InstalledModules';
 
 // Module pages
 import WaterPage from './src/views/Modules/Water/WaterPage';
+import ElectricityPage from './src/views/Modules/Electricity/ElectricityPage';
+import CropQualityPage from './src/views/Modules/CropQuality/CropQualityPage';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -22,13 +24,17 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="InstalledModules" component={InstalledModules} />
-        <Stack.Screen name="Water" component={WaterPage} />
+      <Stack.Navigator initialRouteName="InstalledModules" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login">
           {props => <Login {...props} setToken={setToken} />}
         </Stack.Screen>
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="InstalledModules" component={InstalledModules} />
+
+        {/* Module views */}
+        <Stack.Screen name="Water" component={WaterPage} />
+        <Stack.Screen name="Electricity" component={ElectricityPage} />
+        <Stack.Screen name="CropQuality" component={CropQualityPage} />
       </Stack.Navigator>
     </NavigationContainer>
     
