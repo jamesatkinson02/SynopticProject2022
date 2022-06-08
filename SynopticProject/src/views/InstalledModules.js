@@ -4,10 +4,12 @@ import PageWrapper from "../components/Layout/PageWrapper";
 import Card from "../components/Layout/Card";
 import { useState } from "react";
 import { textStyles } from "../styles/textSheet";
+import { shared } from "../styles/sharedSheet";
+import AddButton from "../components/Inputs/AddButton";
 
 const StatisticsContainer = (props) => {
   return (
-    <View>
+    <View style={shared.statisticsContainer}>
       {props.children}
     </View>
   );
@@ -46,6 +48,7 @@ const InstalledModules = (props) => {
   return (
     <PageWrapper title={'Installed modules'}>
       { modules.map(m => <ModuleButton key={m.name} moduleName={m.name} statComponents={m.statComponents}/>) }
+      <AddButton onPress={() => {}}>+ add module</AddButton>
     </PageWrapper>
   );
 };

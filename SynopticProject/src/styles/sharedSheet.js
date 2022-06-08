@@ -135,6 +135,23 @@ export const shared = StyleSheet.create({
     marginTop: 30,
   },
 
+  // components/Inputs/AddButton.js
+  addButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 30,
+  },
+  addButton: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+  },
+  addButtonText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
   // views/InstalledModules.js
   statisticsContainer: {
     marginTop: 15,
