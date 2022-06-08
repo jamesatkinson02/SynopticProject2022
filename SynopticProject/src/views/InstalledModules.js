@@ -1,0 +1,53 @@
+import { Text, TouchableWithoutFeedback, View } from "react-native";
+
+import PageWrapper from "../components/Layout/PageWrapper";
+import Card from "../components/Layout/Card";
+import { useState } from "react";
+import { textStyles } from "../styles/textSheet";
+
+const StatisticsContainer = (props) => {
+  return (
+    <View>
+      {props.children}
+    </View>
+  );
+};
+
+const ModuleButton = (props) => {
+  return (
+    <TouchableWithoutFeedback onPress={() => {}}>
+      <Card marginTop={30}>
+        <Text style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</Text>
+
+        <StatisticsContainer>
+          {props.statComponents || <></>}
+        </StatisticsContainer>
+      </Card>
+    </TouchableWithoutFeedback>
+  );
+};
+
+const InstalledModules = (props) => {
+  const [modules, setModules] = useState([
+    {
+      name: 'Water',
+      statComponents: <></>,
+    },
+    {
+      name: 'Electricity',
+      statComponents: <></>,
+    },
+    {
+      name: 'Crop quality',
+      statComponents: <></>,
+    },
+  ]);
+
+  return (
+    <PageWrapper title={'Installed modules'}>
+      { modules.map(m => <ModuleButton key={m.name} moduleName={m.name} statComponents={m.statComponents}/>) }
+    </PageWrapper>
+  );
+};
+
+export default InstalledModules;

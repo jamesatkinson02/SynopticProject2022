@@ -1,7 +1,7 @@
 const waterReducer = (state, action) => {
   switch(action.type)
   {
-      case 'FORM INPUT':
+      case 'GRAPH DATA':
           return {
               ...state,
               [action.field]: action.payload

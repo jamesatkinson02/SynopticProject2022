@@ -8,6 +8,9 @@ export const textStyles = StyleSheet.create({
   subHeader: {
     fontSize: 20,
   },
+  largerText: {
+    fontSize: 18,
+  },
   smallItalic: {
     fontStyle: 'italic',
     fontSize: 11,

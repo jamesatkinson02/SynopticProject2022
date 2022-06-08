@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Signup from './src/views/Signup';
 import useToken from './src/hooks/useToken'
 
+import InstalledModules from './src/views/InstalledModules';
+
 // Module pages
 import WaterPage from './src/views/Modules/Water/WaterPage';
 
@@ -21,6 +23,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="InstalledModules" component={InstalledModules} />
         <Stack.Screen name="Water" component={WaterPage} />
         <Stack.Screen name="Login">
           {props => <Login {...props} setToken={setToken} />}

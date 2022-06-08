@@ -135,6 +135,11 @@ export const shared = StyleSheet.create({
     marginTop: 30,
   },
 
+  // views/InstalledModules.js
+  statisticsContainer: {
+    marginTop: 15,
+  },
+
   
   container: {
     backgroundColor:'#f2f5f3',

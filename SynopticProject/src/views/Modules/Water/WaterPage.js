@@ -18,18 +18,6 @@ import { useState } from "react";
 
 import waterReducer from "../../../reducers/Modules/waterReducer";
 
-const contentData = {
-  labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
-  datasets: [
-    {
-      data: [200, 450, 280, 800, 990, 430, 560],
-      color: (opacity = 1) => `rgba(41,144,203, ${opacity})`, // optional
-      strokeWidth: 3 // optional
-    }
-  ],
-  legend: ["Water (L)"] // optional
-};
-
 const qualityData = {
   // optional
   labels: ["Clarity: "],
@@ -37,11 +25,28 @@ const qualityData = {
 };
 
 const WaterPage = () => {
-  //const [state, dispatch] = useReducer(waterReducer, {});
+  const [state, dispatch] = useReducer(waterReducer, {
+    pHValue: 0,
+    clarityData: 0.6,
+    contentData: [200, 450, 280, 800, 990, 430, 560],
+    
+  });
 
   const [pHValue, setpHValue] = useState(7);
   const [chartWrapperWidth, setChartWrapperWidth] = useState(10);
   const [gridItemWrapperWidth, setGridItemWrapperWidth] = useState(150);
+
+  const contentData = {
+    labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+    datasets: [
+      {
+        data: [200, 450, 280, 800, 990, 430, 560],
+        color: (opacity = 1) => `rgba(41,144,203, ${opacity})`, // optional
+        strokeWidth: 3 // optional
+      }
+    ],
+    legend: ["Water (L)"] // optional
+  };
 
   return(
     <PageWrapper title={'Water management'}>
@@ -55,9 +60,9 @@ const WaterPage = () => {
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>
-        <Pill>Daily</Pill>
-        <Pill>Weekly</Pill>
-        <Pill>Monthly</Pill>
+        <Pill onPress={() => {}}>Daily</Pill>
+        <Pill onPress={() => {}}>Weekly</Pill>
+        <Pill onPress={() => {}}>Monthly</Pill>
       </PillSelection>
 
       <Card onLayout={({ nativeEvent }) => setChartWrapperWidth(nativeEvent.layout.width)}>
