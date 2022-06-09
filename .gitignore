@@ -1,0 +1,12 @@
+# vim stuff
+*.swp
+
+# enviroment variables
+*.env
+
+# compiled binaries
+synoptic
+
+# golang dependencies
+go.mod
+go.sum
