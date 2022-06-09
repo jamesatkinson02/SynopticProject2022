@@ -26,21 +26,24 @@ const qualityData = {
 
 const WaterPage = () => {
   const [state, dispatch] = useReducer(waterReducer, {
-    pHValue: 0,
-    clarityData: 0.6,
-    contentData: [200, 450, 280, 800, 990, 430, 560],
-    
+    data: {
+      pHValue: 7,
+      clarityData: 0.6,
+      currentContent: 650,
+      maxContent: 1000,
+      contentData: [200, 450, 280, 800, 990, 430, 560],
+    },
+    layout: {
+      chartWrapperWidth: 10,
+      gridItemWrapperWidth: 150,
+    }
   });
 
-  const [pHValue, setpHValue] = useState(7);
-  const [chartWrapperWidth, setChartWrapperWidth] = useState(10);
-  const [gridItemWrapperWidth, setGridItemWrapperWidth] = useState(150);
-
-  const contentData = {
+  const contentConfig = {
     labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
     datasets: [
       {
-        data: [200, 450, 280, 800, 990, 430, 560],
+        data: state.data.contentData,
         color: (opacity = 1) => `rgba(41,144,203, ${opacity})`, // optional
         strokeWidth: 3 // optional
       }
@@ -48,15 +51,17 @@ const WaterPage = () => {
     legend: ["Water (L)"] // optional
   };
 
+  let fillRatio = (state.data.currentContent / state.data.maxContent) * 175;
+
   return(
     <PageWrapper title={'Water management'}>
       <Card centered={true} marginTop={30}>
         <View style={waterStyles.glassContainer}>
-          <Image source={require("../../../../assets/img/Water.png")} style={waterStyles.water} />
+          <Image source={require("../../../../assets/img/Water.png")} style={[waterStyles.water, { top: 175 - fillRatio }]} />
           <Image source={require("../../../../assets/img/Empty_Glass.png")} style={waterStyles.glass} />
         </View>
         
-        <Text style={textStyles.textDark}>1000/1000 L</Text>
+        <Text style={textStyles.textDark}>{state.data.currentContent} / {state.data.maxContent} L</Text>
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>
@@ -65,17 +70,17 @@ const WaterPage = () => {
         <Pill onPress={() => {}}>Monthly</Pill>
       </PillSelection>
 
-      <Card onLayout={({ nativeEvent }) => setChartWrapperWidth(nativeEvent.layout.width)}>
-        <ContentChart containerWidth={chartWrapperWidth} data={contentData}></ContentChart>
+      <Card onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'chartWrapperWidth', payload: nativeEvent.layout.width})}>
+        <ContentChart containerWidth={state.layout.chartWrapperWidth} data={contentConfig}></ContentChart>
       </Card>
 
       <Grid centered={true}>
-        <GridItem onLayout={({ nativeEvent }) => setGridItemWrapperWidth(nativeEvent.layout.width)} containerWidth={gridItemWrapperWidth}>
-          <PHMeter containerWidth={gridItemWrapperWidth} value={pHValue}></PHMeter>
+        <GridItem onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'gridItemWrapperWidth', payload: nativeEvent.layout.width})} containerWidth={state.layout.gridItemWrapperWidth}>
+          <PHMeter containerWidth={state.layout.gridItemWrapperWidth} value={state.data.pHValue}></PHMeter>
         </GridItem>
 
-        <GridItem containerWidth={gridItemWrapperWidth}>
-          <ClarityGraph qualityData={qualityData} containerWidth={gridItemWrapperWidth}/>
+        <GridItem containerWidth={state.layout.gridItemWrapperWidth}>
+          <ClarityGraph qualityData={qualityData} containerWidth={state.layout.gridItemWrapperWidth}/>
         </GridItem>
       </Grid>
     </PageWrapper>
