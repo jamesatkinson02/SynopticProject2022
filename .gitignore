@@ -1,15 +1,15 @@
 # vim stuff
-*.swp
+**/.swp
 
 # enviroment variables
-*.env
+**/.env
 
 # compiled binaries
-synoptic
+**/synoptic
 
 # golang dependencies
-go.mod
-go.sum
+**/go.mod
+**/go.sum
 
-# node dependencies
-node_modules
+# nodejs dependencies
+**/node_modules
