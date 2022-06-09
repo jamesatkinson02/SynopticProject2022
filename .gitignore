@@ -10,3 +10,6 @@ synoptic
 # golang dependencies
 go.mod
 go.sum
+
+# node dependencies
+node_modules
