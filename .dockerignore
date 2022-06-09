@@ -5,8 +5,12 @@
 *.env
 
 # compiled binaries
-**/synoptic
+synoptic
 
 # golang dependencies
-**/go.mod
-**/go.sum
+*.mod
+*.sum
+
+# nodejs dependencies
+node_modules
+package-lock.json
