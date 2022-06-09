@@ -157,6 +157,14 @@ export const shared = StyleSheet.create({
     marginTop: 15,
   },
 
+  // components/Graphs/RMProgressChart.js
+  labelText: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
+
   
   container: {
     backgroundColor:'#f2f5f3',

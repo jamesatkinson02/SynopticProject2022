@@ -1,4 +1,4 @@
-import { ProgressChart } from "react-native-chart-kit";
+import RMProgressChart from "../../../../components/Graphs/RMProgressChart";
 import { shared } from "../../../../styles/sharedSheet";
 
 const progressBarConfig ={
@@ -13,14 +13,15 @@ const ClarityGraph = (props) => {
   let r = size * 0.35;
 
   return (
-    <ProgressChart
+    <RMProgressChart
       width={size}
       height={size}
       strokeWidth={r * 0.35}
       chartConfig={progressBarConfig}
       radius={r}
-      data={props.qualityData}
-      hideLegend={true}
+      data={props.clarityData}
+      labelColour={'rgb(52, 149, 235)'}
+      label={'Clarity'}
     />
   );
 };

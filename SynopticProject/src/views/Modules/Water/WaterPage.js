@@ -18,20 +18,15 @@ import { useState } from "react";
 
 import waterReducer from "../../../reducers/Modules/waterReducer";
 
-const qualityData = {
-  // optional
-  labels: ["Clarity: "],
- data: [0.6],
-};
-
 const WaterPage = () => {
   const [state, dispatch] = useReducer(waterReducer, {
     data: {
       pHValue: 7,
-      clarityData: 0.6,
+      clarityData: { data: [0.6] },
       currentContent: 650,
       maxContent: 1000,
       contentData: [200, 450, 280, 800, 990, 430, 560],
+      contentFrequency: 'Daily',
     },
     layout: {
       chartWrapperWidth: 10,
@@ -39,8 +34,28 @@ const WaterPage = () => {
     }
   });
 
-  const contentConfig = {
-    labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
+  let fillRatio = (state.data.currentContent / state.data.maxContent) * 175;
+
+  const setFrequency = (freq) => {
+    dispatch({type: 'GRAPH DATA', field: 'contentFrequency', payload: freq})
+  };
+
+  let contentLabels;
+  switch (state.data.contentFrequency)
+  {
+    case 'Weekly':
+      contentLabels = ["25/04", "02/05", "09/05", "16/05", "23/05", "30/05"];
+      break;
+    case 'Monthly':
+      contentLabels = ["Dec", "Jan", "Feb", "Mar", "Apr", "May"];
+      break;
+    default:
+      contentLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
+      break;
+  }
+
+  let contentConfig = {
+    labels: contentLabels,
     datasets: [
       {
         data: state.data.contentData,
@@ -50,8 +65,6 @@ const WaterPage = () => {
     ],
     legend: ["Water (L)"] // optional
   };
-
-  let fillRatio = (state.data.currentContent / state.data.maxContent) * 175;
 
   return(
     <PageWrapper title={'Water management'}>
@@ -65,9 +78,9 @@ const WaterPage = () => {
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>
-        <Pill onPress={() => {}}>Daily</Pill>
-        <Pill onPress={() => {}}>Weekly</Pill>
-        <Pill onPress={() => {}}>Monthly</Pill>
+        <Pill onPress={() => setFrequency('Daily')}>Daily</Pill>
+        <Pill onPress={() => setFrequency('Weekly')}>Weekly</Pill>
+        <Pill onPress={() => setFrequency('Monthly')}>Monthly</Pill>
       </PillSelection>
 
       <Card onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'chartWrapperWidth', payload: nativeEvent.layout.width})}>
@@ -80,7 +93,7 @@ const WaterPage = () => {
         </GridItem>
 
         <GridItem containerWidth={state.layout.gridItemWrapperWidth}>
-          <ClarityGraph qualityData={qualityData} containerWidth={state.layout.gridItemWrapperWidth}/>
+          <ClarityGraph clarityData={state.data.clarityData} containerWidth={state.layout.gridItemWrapperWidth}/>
         </GridItem>
       </Grid>
     </PageWrapper>

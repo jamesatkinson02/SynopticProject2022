@@ -6,6 +6,7 @@ import { useState } from "react";
 import { textStyles } from "../styles/textSheet";
 import { shared } from "../styles/sharedSheet";
 import AddButton from "../components/Inputs/AddButton";
+import WaterStatComponents from "./Modules/Water/WaterStatComponents";
 
 const StatisticsContainer = (props) => {
   return (
@@ -34,7 +35,7 @@ const InstalledModules = (props) => {
     {
       name: 'Water',
       route: 'Water',
-      statComponents: <></>,
+      statComponents: <WaterStatComponents/>,
     },
     {
       name: 'Electricity',
@@ -51,7 +52,7 @@ const InstalledModules = (props) => {
   return (
     <PageWrapper title={'Installed modules'}>
       { modules.map(m => <ModuleButton key={m.name} moduleName={m.name} route={m.route} navigation={props.navigation} statComponents={m.statComponents}/>) }
-      <AddButton onPress={() => {}}>+ add module</AddButton>
+      <AddButton onPress={() => props.navigation.navigate('AddModule')}>+ add module</AddButton>
     </PageWrapper>
   );
 };

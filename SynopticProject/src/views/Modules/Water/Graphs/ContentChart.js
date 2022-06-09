@@ -1,5 +1,4 @@
 import { LineChart } from "react-native-chart-kit";
-
 import { waterStyles } from "../../../../styles/Modules/waterSheet";
 import { shared } from "../../../../styles/sharedSheet";
 

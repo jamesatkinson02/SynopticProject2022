@@ -9,6 +9,7 @@ import Signup from './src/views/Signup';
 import useToken from './src/hooks/useToken'
 
 import InstalledModules from './src/views/InstalledModules';
+import AddModule from './src/views/AddModule';
 
 // Module pages
 import WaterPage from './src/views/Modules/Water/WaterPage';
@@ -30,6 +31,7 @@ export default function App() {
         </Stack.Screen>
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="InstalledModules" component={InstalledModules} />
+        <Stack.Screen name="AddModule" component={AddModule} />
 
         {/* Module views */}
         <Stack.Screen name="Water" component={WaterPage} />
