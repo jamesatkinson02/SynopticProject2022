@@ -8,6 +8,7 @@ const Card = (props) => {
         alignItems: `${ props.centered ? 'center' : 'flex-start' }`,
         marginTop: props.marginTop || 0,
         marginBottom: props.marginBottom || 0,
+        padding: props.padding || shared.card.padding,
       }]}
       onLayout={props.onLayout}
       >

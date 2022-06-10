@@ -153,8 +153,20 @@ export const shared = StyleSheet.create({
   },
 
   // views/InstalledModules.js
+  moduleTopBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
+    paddingTop: 10,
+    flexDirection: 'row',
+    width: '100%',
+  },
   statisticsContainer: {
     marginTop: 15,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    width: '100%',
   },
 
   // components/Graphs/RMProgressChart.js

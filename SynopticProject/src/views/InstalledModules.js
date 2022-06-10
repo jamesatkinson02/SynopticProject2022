@@ -19,8 +19,11 @@ const StatisticsContainer = (props) => {
 const ModuleButton = (props) => {
   return (
     <TouchableOpacity onPress={() => props.navigation.navigate(props.route)}>
-      <Card marginTop={30}>
-        <Text style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</Text>
+      <Card marginTop={30} padding={10}>
+        <View style={shared.moduleTopBar}>
+          <Text style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</Text>
+          <Text style={[textStyles.largerText, textStyles.textDark1]}>100%</Text>
+        </View>
 
         <StatisticsContainer>
           {props.statComponents || <></>}
