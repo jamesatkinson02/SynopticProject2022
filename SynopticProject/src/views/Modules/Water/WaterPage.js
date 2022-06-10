@@ -93,7 +93,7 @@ const WaterPage = () => {
         </GridItem>
 
         <GridItem containerWidth={state.layout.gridItemWrapperWidth}>
-          <ClarityGraph clarityData={state.data.clarityData} containerWidth={state.layout.gridItemWrapperWidth}/>
+          <ClarityGraph containerPadding={shared.gridItem.padding} clarityData={state.data.clarityData} containerWidth={state.layout.gridItemWrapperWidth}/>
         </GridItem>
       </Grid>
     </PageWrapper>

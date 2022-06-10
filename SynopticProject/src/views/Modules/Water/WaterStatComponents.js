@@ -1,3 +1,4 @@
+import { shared } from "../../../styles/sharedSheet";
 import ClarityGraph from "./Graphs/ClarityGraph";
 
 const clarityData = {
@@ -7,7 +8,7 @@ const clarityData = {
 const WaterStatComponents = (props) => {
   return (
     <>
-      <ClarityGraph clarityData={clarityData} containerWidth={100}/>
+      <ClarityGraph containerPadding={0} clarityData={clarityData} containerWidth={100}/>
     </>
   );
 };

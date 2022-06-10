@@ -39,7 +39,6 @@ export default function App() {
         <Stack.Screen name="CropQuality" component={CropQualityPage} />
       </Stack.Navigator>
     </NavigationContainer>
-    
   );
 }
 

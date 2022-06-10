@@ -9,7 +9,7 @@ const progressBarConfig ={
 }
 
 const ClarityGraph = (props) => {
-  var size = props.containerWidth - shared.gridItem.padding * 2;
+  var size = props.containerWidth - props.containerPadding * 2;
   let r = size * 0.35;
 
   return (
@@ -22,6 +22,7 @@ const ClarityGraph = (props) => {
       data={props.clarityData}
       labelColour={'rgb(52, 149, 235)'}
       label={'Clarity'}
+      containerPadding={props.containerPadding}
     />
   );
 };
