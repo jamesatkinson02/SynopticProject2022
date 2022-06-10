@@ -3,10 +3,18 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
 dotenv.config();
+
+// Router imports
+const waterRouter = require('./routes/modules/water');
+
+// Routers
+app.use('/water', waterRouter);
+
 
 app.post('/login', (req, res) => {
     //generate new session token
