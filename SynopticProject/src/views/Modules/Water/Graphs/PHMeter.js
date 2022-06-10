@@ -63,18 +63,26 @@ const phLabels = [
 ]
 
 const PHMeter = (props) => {
+  let size = props.containerWidth - (props.containerPadding * 2);
+
   return (
     <RNSpeedometer
       labels={phLabels}
       minValue={3}
       maxValue={11}
       value={props.value}
+      labelStyle={{
+        fontSize: size * 0.2
+      }}
+      labelNoteStyle={{
+        fontSize: size * 0.13
+      }}
       wrapperStyle={{
         transform: [
-          { translateY: - props.containerWidth * 0.17 },
+          { translateY: - size * 0.245 },
         ],
       }}
-      size={props.containerWidth - (shared.card.padding * 2)}
+      size={size}
     />
   );
 };

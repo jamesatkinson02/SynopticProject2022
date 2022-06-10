@@ -83,13 +83,13 @@ const WaterPage = () => {
         <Pill onPress={() => setFrequency('Monthly')}>Monthly</Pill>
       </PillSelection>
 
-      <Card onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'chartWrapperWidth', payload: nativeEvent.layout.width})}>
-        <ContentChart containerWidth={state.layout.chartWrapperWidth} data={contentConfig}></ContentChart>
+      <Card padding={15} onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'chartWrapperWidth', payload: nativeEvent.layout.width})}>
+        <ContentChart containerPadding={15} containerWidth={state.layout.chartWrapperWidth} data={contentConfig}></ContentChart>
       </Card>
 
       <Grid centered={true}>
         <GridItem onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'gridItemWrapperWidth', payload: nativeEvent.layout.width})} containerWidth={state.layout.gridItemWrapperWidth}>
-          <PHMeter containerWidth={state.layout.gridItemWrapperWidth} value={state.data.pHValue}></PHMeter>
+          <PHMeter containerPadding={shared.gridItem.padding} containerWidth={state.layout.gridItemWrapperWidth} value={state.data.pHValue}/>
         </GridItem>
 
         <GridItem containerWidth={state.layout.gridItemWrapperWidth}>

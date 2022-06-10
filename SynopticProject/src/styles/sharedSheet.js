@@ -60,7 +60,7 @@ export const shared = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#FFF',
     borderRadius: 16,
-    padding: 15,
+    padding: 20,
     shadowColor: '#E5E5E5',
     shadowColor: "#000",
     shadowOpacity: 0.2,
@@ -163,6 +163,7 @@ export const shared = StyleSheet.create({
   },
   statisticsContainer: {
     marginTop: 15,
+    padding: 5,
     display: 'flex',
     justifyContent: 'flex-end',
     flexDirection: 'row',
