@@ -9,6 +9,7 @@ import {Link} from '@react-navigation/native';
 import Card from '../components/Layout/Card';
 import RMTextInput from '../components/Inputs/TextInput';
 import RMButton from '../components/Inputs/Button';
+import RMText from '../components/Layout/RMText';
 
 export default function Login({setToken})
 {
@@ -40,7 +41,7 @@ export default function Login({setToken})
    
     return (
         <View style={shared.container}>
-            <Text style={[textStyles.header, textStyles.textDark2]}>Login</Text>
+            <RMText style={[textStyles.header, textStyles.textDark2]}>Login</RMText>
 
             <Card centered={true} marginTop={30}>
                 <View>
@@ -49,9 +50,9 @@ export default function Login({setToken})
                     <RMButton title="Login" onPress={() => handleSubmit()}/>
                 </View>
 
-                <Text style={[textStyles.smallItalic, textStyles.textDark1]}>
+                <RMText style={[textStyles.smallItalic, textStyles.textDark1]}>
                     Don't have an account? <Link style={[textStyles.smallItalic, textStyles.textDark1]} to={{ screen: 'Signup'}}> Sign up here </Link>
-                </Text>
+                </RMText>
             </Card>
         </View>
     )

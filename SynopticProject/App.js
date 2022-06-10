@@ -16,12 +16,24 @@ import WaterPage from './src/views/Modules/Water/WaterPage';
 import ElectricityPage from './src/views/Modules/Electricity/ElectricityPage';
 import CropQualityPage from './src/views/Modules/CropQuality/CropQualityPage';
 
-const Stack = createNativeStackNavigator();
-export default function App() {
+import { useFonts } from 'expo-font';
 
+const Stack = createNativeStackNavigator();
+
+export default function App() {
   let {token, setToken} = useToken();
 
   console.log(token);
+
+  let [fontsLoaded] = useFonts({
+    'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
+    'Lato-Light': require('./assets/fonts/Lato-Light.ttf'),
+    'Lato-Bold': require('./assets/fonts/Lato-Bold.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return <></>
+  }
 
   return (
     <NavigationContainer>

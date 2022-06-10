@@ -1,6 +1,7 @@
 import { ProgressChart } from "react-native-chart-kit";
 import { Text, View } from "react-native";
 import { shared } from "../../styles/sharedSheet";
+import RMText from "../Layout/RMText";
 
 const RMProgressChart = (props) => {
   let radius = Math.round(props.width * 0.42);
@@ -17,12 +18,12 @@ const RMProgressChart = (props) => {
       <ProgressChart hideLegend={true} radius={radius} strokeWidth={strokeWidth} {...props}/>
       
       {/* Center label */}
-      <Text style={[shared.labelText, {
+      <RMText style={[shared.labelText, {
         color: props.labelColour || 'black',
         left: props.width / 2 - radius,
         width: radius * 2,
         fontSize: strokeWidth,
-      }]}>{props.label}</Text>
+      }]}>{props.label}</RMText>
     </View>
   );
 };

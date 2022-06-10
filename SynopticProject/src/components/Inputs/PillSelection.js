@@ -1,12 +1,13 @@
 import { View, TouchableOpacity, Text } from "react-native";
 import { shared } from "../../styles/sharedSheet";
 import { textStyles } from "../../styles/textSheet";
+import RMText from "../Layout/RMText";
 
 const Pill = (props) => {
   return (
     <TouchableOpacity style={shared.pillContainer} onPress={props.onPress}>
       <View style={[shared.pill, shared.shadow]}>
-        <Text style={[shared.pillText, textStyles.textDark1]}>{props.children}</Text>
+        <RMText style={[shared.pillText, textStyles.textDark1]}>{props.children}</RMText>
       </View>
     </TouchableOpacity>
   );
