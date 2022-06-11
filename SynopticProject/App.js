@@ -27,21 +27,11 @@ import { shared } from './src/styles/sharedSheet';
 import { useFonts } from 'expo-font';
 
 const Stack = createNativeStackNavigator();
-<<<<<<< HEAD
-
-export default function App() {
-=======
->>>>>>> 0beef3da24291c1ba8285e85df20ccc631cf50ea
 
 export default function App() {
   let {token, setToken} = useToken();
   let [state, setState] = useState(false);
 
-  console.log(token);
-
-<<<<<<< HEAD
-  
-=======
   let [fontsLoaded] = useFonts({
     'Lato-Regular': require('./assets/fonts/Lato-Regular.ttf'),
     'Lato-Light': require('./assets/fonts/Lato-Light.ttf'),
@@ -51,8 +41,6 @@ export default function App() {
   if (!fontsLoaded) {
     return <></>
   }
-
->>>>>>> 0beef3da24291c1ba8285e85df20ccc631cf50ea
   return (
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
