@@ -10,6 +10,7 @@ import { Grid, GridItem } from "../../../components/Layout/Grid";
 import CurrentMoisture from "./Graphs/CurrentMoisture";
 import MoistureChart from "./Graphs/MoistureChart";
 import OverallQuality from "./Graphs/OverallQuality";
+import PHMeter from "../../../components/Graphs/PHMeter";
 
 // Styles
 import { shared } from "../../../styles/sharedSheet";
@@ -20,6 +21,7 @@ const CropQualityPage = () => {
       moistureData: [200, 450, 280, 800, 990, 430, 560],
       moistureFrequency: 'Daily',
       currentMoisture: { data: [0.6] },
+      pHValue: 7,
     },
     layout: {
       chartWrapperWidth: 10,
@@ -52,6 +54,10 @@ const CropQualityPage = () => {
       <Grid centered={true}>
         <GridItem onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'gridItemWrapperWidth', payload: nativeEvent.layout.width})} containerWidth={state.layout.gridItemWrapperWidth}>
           <CurrentMoisture containerPadding={shared.gridItem.padding} data={state.data.currentMoisture} containerWidth={state.layout.gridItemWrapperWidth}/>
+        </GridItem>
+
+        <GridItem onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'gridItemWrapperWidth', payload: nativeEvent.layout.width})} containerWidth={state.layout.gridItemWrapperWidth}>
+          <PHMeter containerPadding={shared.gridItem.padding} containerWidth={state.layout.gridItemWrapperWidth} value={state.data.pHValue}/>
         </GridItem>
       </Grid>
     </PageWrapper>
