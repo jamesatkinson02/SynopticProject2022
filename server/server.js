@@ -13,30 +13,11 @@ dotenv.config();
 
 // Router imports
 const waterRouter = require('./routes/modules/water');
+const accountsRouter = require('./routes/accounts')
 
 // Routers
 app.use('/water', waterRouter);
-
-
-app.post('/login', (req, res) => {
-    //generate new session token
-    jwt.sign({name: req.body.username}, process.env.TOKEN_SECRET, {expiresIn: '1h'}, function(err, tok)
-    {
-      res.send({token:tok});
-    });
-
-    //...
-})
-
-app.post('/verify-token', (req,res) => {
-    jwt.verify(req.body.token, process.env.TOKEN_SECRET, function(err, decoded)
-    {
-        if(err)
-            res.status(401).send(err);
-        else
-            res.send(decoded);
-    })
-})
+app.use('/accounts', accountsRouter);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server listening on port ${process.env.PORT}`);
