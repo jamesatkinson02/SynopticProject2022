@@ -1,7 +1,7 @@
 import { LineChart } from "react-native-chart-kit";
 import { waterStyles } from "../../../../styles/Modules/waterSheet";
 
-const legend = "Water (L)";
+const legend = "Moisture (%)";
 const chartStyle = waterStyles.graph;
 
 const chartConfig = {
@@ -15,7 +15,7 @@ const chartConfig = {
   useShadowColorFromDataset: false,
 };
 
-const ContentChart = (props) => {
+const MoistureChart = (props) => {
   let chartData = {
     labels: props.labels,
     datasets: [
@@ -39,4 +39,4 @@ const ContentChart = (props) => {
   );
 };
 
-export default ContentChart;
+export default MoistureChart;

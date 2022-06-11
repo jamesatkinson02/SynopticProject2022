@@ -5,20 +5,20 @@ const progressBarConfig ={
   backgroundGradientFrom: "#FFFF",
   backgroundGradientFromOpacity: 0,
   backgroundGradientTo: "#FFFF",
-  color: (opacity = 0.1) => `rgba(50, 170, 180, ${opacity})`,
+  color: (opacity = 1) => `rgba(250, 83, 50, ${opacity})`,
 }
 
-const ClarityGraph = (props) => {
+const CurrentUsage = (props) => {
   var size = props.containerWidth - props.containerPadding * 2;
-
+  
   return (
     <RMProgressChart
       width={size}
       height={size}
       chartConfig={progressBarConfig}
-      data={props.clarityData}
-      labelColour={'rgb(91, 197, 225)'}
-      label={'Clarity'}
+      data={props.data}
+      labelColour={'rgb(250, 83, 50)'}
+      label={'Usage'}
       containerPadding={props.containerPadding}
       marginLeft={props.marginLeft}
       marginRight={props.marginRight}
@@ -28,4 +28,4 @@ const ClarityGraph = (props) => {
   );
 };
 
-export default ClarityGraph;
+export default CurrentUsage;

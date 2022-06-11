@@ -6,9 +6,13 @@ import { useEffect, useState } from "react";
 import { textStyles } from "../styles/textSheet";
 import { shared } from "../styles/sharedSheet";
 import AddButton from "../components/Inputs/AddButton";
-import WaterStatComponents from "./Modules/Water/WaterStatComponents";
 import RMText from "../components/Layout/RMText";
 import http from "../../AxiosConfiguration";
+
+// Module components
+import WaterStatComponents from "./Modules/Water/WaterStatComponents";
+import ElectricityStatComponents from "./Modules/Electricity/ElectricityStatComponents";
+import CQStatComponents from "./Modules/CropQuality/CQStatComponents";
 
 const StatisticsContainer = (props) => {
   return (
@@ -41,6 +45,16 @@ const InstalledModules = (props) => {
       name: 'Water',
       route: 'Water',
       statComponents: <WaterStatComponents/>,
+    },
+    {
+      name: 'Electricity',
+      route: 'Electricity',
+      statComponents: <ElectricityStatComponents/>,
+    },
+    {
+      name: 'Crop quality',
+      route: 'CropQuality',
+      statComponents: <CQStatComponents/>,
     },
   ]);
 

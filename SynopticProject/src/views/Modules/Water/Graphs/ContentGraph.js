@@ -22,6 +22,8 @@ const ContentGraph = (props) => {
       containerPadding={props.containerPadding}
       marginLeft={props.marginLeft}
       marginRight={props.marginRight}
+      max={props.max}
+      unit={props.unit}
     />
   );
 };

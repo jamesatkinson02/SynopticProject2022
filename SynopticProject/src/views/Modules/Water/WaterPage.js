@@ -7,7 +7,7 @@ import { useReducer } from "react";
 
 // Graphs
 import ContentChart from "./Graphs/ContentChart";
-import PHMeter from "./Graphs/PHMeter";
+import PHMeter from "../../../components/Graphs/PHMeter";
 import ClarityGraph from "./Graphs/ClarityGraph";
 
 // Style sheets
@@ -16,11 +16,11 @@ import { waterStyles } from "../../../styles/Modules/waterSheet";
 import { textStyles } from "../../../styles/textSheet";
 import { useState } from "react";
 
-import waterReducer from "../../../reducers/Modules/waterReducer";
+import moduleReducer from "../../../reducers/moduleReducer";
 import RMText from "../../../components/Layout/RMText";
 
 const WaterPage = () => {
-  const [state, dispatch] = useReducer(waterReducer, {
+  const [state, dispatch] = useReducer(moduleReducer, {
     data: {
       pHValue: 7,
       clarityData: { data: [0.6] },
@@ -55,18 +55,6 @@ const WaterPage = () => {
       break;
   }
 
-  let contentConfig = {
-    labels: contentLabels,
-    datasets: [
-      {
-        data: state.data.contentData,
-        color: (opacity = 1) => `rgba(41,144,203, ${opacity})`, // optional
-        strokeWidth: 3 // optional
-      }
-    ],
-    legend: ["Water (L)"] // optional
-  };
-
   return(
     <PageWrapper title={'Water management'}>
       <Card centered={true} marginTop={30}>
@@ -85,7 +73,7 @@ const WaterPage = () => {
       </PillSelection>
 
       <Card padding={15} onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'chartWrapperWidth', payload: nativeEvent.layout.width})}>
-        <ContentChart containerPadding={15} containerWidth={state.layout.chartWrapperWidth} data={contentConfig}></ContentChart>
+        <ContentChart containerPadding={15} containerWidth={state.layout.chartWrapperWidth} data={state.data.contentData} labels={contentLabels}/>
       </Card>
 
       <Grid centered={true}>

@@ -1,4 +1,4 @@
-const waterReducer = (state, action) => {
+const moduleReducer = (state, action) => {
   switch(action.type)
   {
       case 'GRAPH DATA':
@@ -22,4 +22,4 @@ const waterReducer = (state, action) => {
   }
 }
 
-export default waterReducer;
+export default moduleReducer;

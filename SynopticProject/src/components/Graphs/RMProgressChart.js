@@ -18,12 +18,27 @@ const RMProgressChart = (props) => {
       <ProgressChart hideLegend={true} radius={radius} strokeWidth={strokeWidth} {...props}/>
       
       {/* Center label */}
-      <RMText style={[shared.labelText, {
-        color: props.labelColour || 'black',
+      <View style={[shared.progressChartLabel, {
         left: props.width / 2 - radius,
         width: radius * 2,
-        fontSize: strokeWidth,
-      }]}>{props.label}</RMText>
+      }]}>
+        <RMText style={[shared.labelText, {
+          color: props.labelColour || 'black',
+          fontSize: strokeWidth * 0.8,
+        }]}>{props.label}</RMText>
+
+        <RMText style={[shared.labelText, {
+          color: props.labelColour || 'black',
+          fontSize: strokeWidth * 0.7,
+        }]}>{props.max ? `${props.data.data * props.max}/${props.max}` : `${props.data.data * 100}%` }</RMText>
+
+        { props.unit && 
+          <RMText style={[shared.labelText, {
+            color: props.labelColour || 'black',
+            fontSize: strokeWidth * 0.7,
+          }]}>{props.unit}</RMText>
+        }
+      </View>
     </View>
   );
 };

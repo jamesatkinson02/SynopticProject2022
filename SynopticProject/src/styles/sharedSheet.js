@@ -171,13 +171,16 @@ export const shared = StyleSheet.create({
   },
 
   // components/Graphs/RMProgressChart.js
-  labelText: {
+  progressChartLabel: {
     position: 'absolute',
     display: 'flex',
     justifyContent: 'center',
     textAlign: 'center',
   },
-
+  labelText: {
+    textAlign: 'center',
+    width: '100%',
+  },
   
   container: {
     backgroundColor:'#f2f5f3',
