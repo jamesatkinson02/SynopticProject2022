@@ -2,11 +2,13 @@ import { Text, TouchableOpacity, TouchableWithoutFeedback, View } from "react-na
 
 import PageWrapper from "../components/Layout/PageWrapper";
 import Card from "../components/Layout/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { textStyles } from "../styles/textSheet";
 import { shared } from "../styles/sharedSheet";
 import AddButton from "../components/Inputs/AddButton";
 import WaterStatComponents from "./Modules/Water/WaterStatComponents";
+import RMText from "../components/Layout/RMText";
+import http from "../../AxiosConfiguration";
 
 const StatisticsContainer = (props) => {
   return (
@@ -21,8 +23,8 @@ const ModuleButton = (props) => {
     <TouchableOpacity onPress={() => props.navigation.navigate(props.route)}>
       <Card marginTop={30} padding={10}>
         <View style={shared.moduleTopBar}>
-          <Text style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</Text>
-          <Text style={[textStyles.largerText, textStyles.textDark1]}>100%</Text>
+          <RMText style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</RMText>
+          <RMText style={[textStyles.largerText, textStyles.textDark1]}>100%</RMText>
         </View>
 
         <StatisticsContainer>
@@ -51,6 +53,12 @@ const InstalledModules = (props) => {
       statComponents: <></>,
     },
   ]);
+
+  useEffect(() => {
+    http.get('/water/content-data').then(res => {
+      console.log(res.data)
+    })
+  }, []);
 
   return (
     <PageWrapper title={'Installed modules'}>

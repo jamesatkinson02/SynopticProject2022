@@ -18,13 +18,13 @@ export const textStyles = StyleSheet.create({
 
   // Dark colours
   textDark: {
-    color: '#333'
-  },
-  textDark1: {
     color: '#444'
   },
-  textDark2: {
+  textDark1: {
     color: '#555'
+  },
+  textDark2: {
+    color: '#666'
   },
 
   // Light colours

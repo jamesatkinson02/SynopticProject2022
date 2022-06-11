@@ -17,6 +17,7 @@ import { textStyles } from "../../../styles/textSheet";
 import { useState } from "react";
 
 import waterReducer from "../../../reducers/Modules/waterReducer";
+import RMText from "../../../components/Layout/RMText";
 
 const WaterPage = () => {
   const [state, dispatch] = useReducer(waterReducer, {
@@ -74,7 +75,7 @@ const WaterPage = () => {
           <Image source={require("../../../../assets/img/Empty_Glass.png")} style={waterStyles.glass} />
         </View>
         
-        <Text style={textStyles.textDark}>{state.data.currentContent} / {state.data.maxContent} L</Text>
+        <RMText style={textStyles.textDark}>{state.data.currentContent} / {state.data.maxContent} L</RMText>
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>

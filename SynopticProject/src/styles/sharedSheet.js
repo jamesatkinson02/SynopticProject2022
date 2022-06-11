@@ -124,7 +124,7 @@ export const shared = StyleSheet.create({
     marginHorizontal: 5,
   },
   pillText: {
-    fontSize: 16,
+    fontSize: 14,
     textAlign: 'center',
   },
 

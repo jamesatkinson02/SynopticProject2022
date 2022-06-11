@@ -5,12 +5,13 @@ import { textStyles } from '../styles/textSheet';
 import Card from '../components/Layout/Card';
 import RMTextInput from '../components/Inputs/TextInput';
 import RMButton from '../components/Inputs/Button';
+import RMText from '../components/Layout/RMText';
 
 export default function Signup({navigation})
 {
     return( 
     <View style={shared.container}>
-        <Text style={[textStyles.header, textStyles.textDark2]}>Sign up</Text>
+        <RMText style={[textStyles.header, textStyles.textDark2]}>Sign up</RMText>
 
         <Card centered={true} marginTop={30}>
             <View>
