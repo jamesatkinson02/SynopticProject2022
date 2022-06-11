@@ -1,5 +1,4 @@
 import { LineChart } from "react-native-chart-kit";
-
 import { waterStyles } from "../../../../styles/Modules/waterSheet";
 import { shared } from "../../../../styles/sharedSheet";
 
@@ -18,7 +17,7 @@ const ContentChart = (props) => {
   return (
     <LineChart
       data={props.data}
-      width={props.containerWidth - (shared.card.padding * 2)}
+      width={props.containerWidth - (props.containerPadding * 2)}
       height={220}
       chartConfig={chartConfig}
       style={waterStyles.graph}

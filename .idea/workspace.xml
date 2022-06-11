@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="64590644-2bc2-48d0-a163-57a0810f88bc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/components/Graphs/RMProgressChart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/components/Inputs/AddButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/components/Inputs/Button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/components/Inputs/PillSelection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/reducers/Modules/waterReducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/AddModule.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/InstalledModules.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/CropQuality/CropQualityPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Electricity/ElectricityPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/ContentGraph.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/PHMeter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/WaterStatComponents.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/synoptic.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testpages/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/testpages/profile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/components/Inputs/TextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/components/Inputs/TextInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/components/Layout/Card.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/components/Layout/Card.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/components/Layout/Grid.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/components/Layout/Grid.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/components/Layout/PageWrapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/components/Layout/PageWrapper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/styles/Modules/waterSheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/styles/Modules/waterSheet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/styles/sharedSheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/styles/sharedSheet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/styles/textSheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/styles/textSheet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/ClarityGraph.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/ClarityGraph.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/ContentChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/ContentChart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/pHMeter.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/Graphs/pHMeter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/WaterPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Modules/Water/WaterPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/Signup.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2ANydsVTBKLpiQsnunOsA3hFB7l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="64590644-2bc2-48d0-a163-57a0810f88bc" name="Default Changelist" comment="" />
+      <created>1654864428162</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654864428162</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="306" y="386" width="1200" height="792" key="AVDManager" timestamp="1654945660305">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="306" y="386" width="1200" height="792" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1654945660305" />
+  </component>
+</project>

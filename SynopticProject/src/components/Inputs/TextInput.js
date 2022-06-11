@@ -1,10 +1,12 @@
 import { useLinkProps } from '@react-navigation/native';
 import {TextInput} from 'react-native';
 import {shared} from '../../styles/sharedSheet';
-const TextInput = (props) => {
+
+
+const RMTextInput = (props) => {
   return (
-    <TextInput style={shared.input} placeholder={props.placeholder} onChange = {props.onChange} {...props} />
+    <TextInput style={shared.textInput} {...props} />
   );
 }
 
-export default TextInput;
+export default RMTextInput;

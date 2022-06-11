@@ -2,7 +2,17 @@ import {StyleSheet} from 'react-native';
 
 export const shared = StyleSheet.create({
   // Generic
-  
+  shadow: {
+    shadowColor: '#E5E5E5',
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+  },
 
   // components/Layout/PageWrapper.js
   pageScrollView: {
@@ -25,21 +35,11 @@ export const shared = StyleSheet.create({
 
   // components/Layout/Card.js
   card: {
-    marginTop: 30,
     display: 'flex',
     alignContent: 'center',
     backgroundColor: '#FFF',
     borderRadius: 16,
     padding: 30,
-    shadowColor: '#E5E5E5',
-    shadowColor: "#000",
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 3,
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
   },
 
   // components/Layout/Grid.js
@@ -60,7 +60,7 @@ export const shared = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: '#FFF',
     borderRadius: 16,
-    padding: 15,
+    padding: 20,
     shadowColor: '#E5E5E5',
     shadowColor: "#000",
     shadowOpacity: 0.2,
@@ -70,6 +70,112 @@ export const shared = StyleSheet.create({
       width: 0,
       height: 1,
     },
+  },
+
+  // components/Inputs/TextInput.js
+  textInput:{
+    paddingHorizontal: 20,
+    paddingVertical: 8,
+    marginBottom: 16,
+    
+    backgroundColor: '#FFF',
+    borderRadius: 100,
+    borderWidth: 1,
+    borderColor: '#aaa',
+    width: 280,
+  },
+
+  // components/Inputs/Button.js
+  button: {
+    display: 'flex',
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 100,
+    padding: 10,
+  },
+
+  buttonGreen: {
+    backgroundColor: '#3DDE87',
+  },
+  buttonBlue: {
+    backgroundColor: '#3DB6DE',
+  },
+  buttonRed: {
+    backgroundColor: '#F04936',
+  },
+  buttonOrange: {
+    backgroundColor: '#FFA339',
+  },
+
+  buttonText: {
+    fontSize: 18,
+  },
+
+  // components/Inputs/PillSelection.js
+  pillContainer: {
+    flexGrow: 1,
+  },
+  pill: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    marginHorizontal: 5,
+  },
+  pillText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
+  pillSelection: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginHorizontal: -5,
+    marginTop: 30,
+  },
+
+  // components/Inputs/AddButton.js
+  addButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 30,
+  },
+  addButton: {
+    backgroundColor: 'white',
+    borderRadius: 100,
+    paddingVertical: 10,
+    paddingHorizontal: 35,
+  },
+  addButtonText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+
+  // views/InstalledModules.js
+  moduleTopBar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingHorizontal: 12,
+    paddingTop: 10,
+    flexDirection: 'row',
+    width: '100%',
+  },
+  statisticsContainer: {
+    marginTop: 15,
+    padding: 5,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    width: '100%',
+  },
+
+  // components/Graphs/RMProgressChart.js
+  labelText: {
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    textAlign: 'center',
   },
 
   
@@ -102,15 +208,22 @@ export const shared = StyleSheet.create({
     flexDirection: 'row',
     maxWidth: '90%',
   },
-  input:{
-    padding:10,
-    margin:8
+
+  sideBarSheet:{
+    alignSelf:'flex-start',
+    position: 'absolute',
+    minWidth:'50%',
+    height:'100%',
+    backgroundColor: '#f2f5f3',
+
+    
+
   },
-  smallItalics:{
-    fontStyle:'italic',
-    fontSize:11,
+  hamburgerSelector:{
+    marginTop:50,
+    left:30
+    
   }
-      
 })
 
 

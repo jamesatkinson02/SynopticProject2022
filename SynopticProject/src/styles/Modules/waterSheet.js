@@ -19,7 +19,7 @@ export const waterStyles = StyleSheet.create({
       height: 200,
       
       left: 0,
-      top: 120,
+      top: 175,
     },
 
     glass:{
