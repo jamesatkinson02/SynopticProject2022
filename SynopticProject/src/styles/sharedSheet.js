@@ -212,17 +212,16 @@ export const shared = StyleSheet.create({
   sideBarSheet:{
     alignSelf:'flex-start',
     position: 'absolute',
-    minWidth:'50%',
+    minWidth: 200,
+    width: '50%',
     height:'100%',
-    backgroundColor: '#f2f5f3',
-
-    
-
+    backgroundColor: 'rgba(242, 245, 243, 1)',
+    paddingTop: 0,
   },
   hamburgerSelector:{
-    marginTop:50,
-    left:30
-    
+    marginTop: 40,
+    left: 30,
+    marginBottom: 20,
   }
 })
 

@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler'
 import {useState} from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, StatusBar } from 'react-native';
 
 import Login from "./src/views/Login"
 
@@ -25,6 +24,7 @@ import Sidebar from './src/components/Layout/Sidebar';
 import { shared } from './src/styles/sharedSheet';
 
 import { useFonts } from 'expo-font';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,16 +41,19 @@ export default function App() {
   if (!fontsLoaded) {
     return <></>
   }
+
+  let sidebarHeight = StatusBar.currentHeight + shared.sideBarSheet.paddingTop;
+  
   return (
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
-                 
-     <Stack.Navigator initialRouteName="InstalledModules" screenOptions={{ headerShown: false }}>
+                
+      <Stack.Navigator initialRouteName="InstalledModules" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login">
           {props => <Login {...props} setToken={setToken} />}
         </Stack.Screen>
         <Stack.Screen name="Signup" component={Signup} />
-       <Stack.Screen name="InstalledModules" component={InstalledModules} />
+        <Stack.Screen name="InstalledModules" component={InstalledModules} />
         <Stack.Screen name="AddModule" component={AddModule} />
 
         {/* Module views */}
@@ -58,7 +61,8 @@ export default function App() {
         <Stack.Screen name="Electricity" component={ElectricityPage} />
         <Stack.Screen name="CropQuality" component={CropQualityPage} />
       </Stack.Navigator>
-  {state ? <Sidebar style={shared.sideBarSheet} onClick={() => setState(false)}></Sidebar> : null}
+
+      {state ? <Sidebar style={[shared.sideBarSheet, { paddingTop: Platform.OS === "android" ? sidebarHeight : 0 }]} onClick={() => setState(false)}></Sidebar> : null}
     </NavigationContainer>
   );
 }

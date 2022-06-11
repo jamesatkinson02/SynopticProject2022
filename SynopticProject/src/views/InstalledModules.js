@@ -42,16 +42,6 @@ const InstalledModules = (props) => {
       route: 'Water',
       statComponents: <WaterStatComponents/>,
     },
-    {
-      name: 'Electricity',
-      route: 'Electricity',
-      statComponents: <></>,
-    },
-    {
-      name: 'Crop quality',
-      route: 'CropQuality',
-      statComponents: <></>,
-    },
   ]);
 
   useEffect(() => {

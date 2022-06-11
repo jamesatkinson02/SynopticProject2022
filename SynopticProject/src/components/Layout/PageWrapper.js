@@ -4,7 +4,7 @@ import RMText from "./RMText";
 
 const PageWrapper = (props) => {
   return (
-    <ScrollView style={{ marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0 }}>
+    <ScrollView>
       <View style={shared.pageWrapper}>
         <RMText style={shared.pageTitle}>{props.title}</RMText>
         {props.children}
