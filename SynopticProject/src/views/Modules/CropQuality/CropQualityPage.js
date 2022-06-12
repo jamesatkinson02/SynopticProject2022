@@ -34,11 +34,12 @@ const CropQualityPage = () => {
   };
 
   let moistureLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+  let rating = (Math.max(1 - (Math.abs(state.data.pHValue - 6.5) / 6.5), 0) + Math.max(1 - (Math.abs(state.data.currentMoisture.data - 0.4) / 0.4), 0)) / 2;
 
   return(
     <PageWrapper title={'Crop quality management'}>
       <Card marginTop={30} centered={true}>
-        <OverallQuality rating={99}/>
+        <OverallQuality rating={rating}/>
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>

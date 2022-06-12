@@ -30,7 +30,7 @@ const RMProgressChart = (props) => {
         <RMText style={[shared.labelText, {
           color: props.labelColour || 'black',
           fontSize: strokeWidth * 0.7,
-        }]}>{props.max ? `${props.data.data * props.max}/${props.max}` : `${props.data.data * 100}%` }</RMText>
+        }]}>{props.max ? `${Math.round(props.data.data * props.max)}/${props.max}` : `${props.data.data * 100}%` }</RMText>
 
         { props.unit && 
           <RMText style={[shared.labelText, {

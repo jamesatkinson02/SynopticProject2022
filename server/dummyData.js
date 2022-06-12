@@ -1,24 +1,30 @@
 const db = require('./db');
 const deviceInterval = 30000;
 
-// Water dummy data
+const insertDeviceData = (deviceId, field, value) => {
+  db.query('INSERT INTO device_data(device_id, field_name, value) VALUES($1, $2, $3)',
+  [deviceId, field, value],
+  (err, res) => {});
+};
+
+let waterDeviceId = '';
+let electricityDeviceId = '';
+let cqDeviceId = '';
+
 setInterval(() => {
-  // db.query('INSERT INTO device_data', (err, res) => {
-  //   if (err) {
-  //       console.error(err);
-  //       return;
-  //   }
+  // Water
+  let waterPH = 3 + Math.round(Math.random() * 8);
+  insertDeviceData(waterDeviceId, "ph", waterPH)
 
-  //   console.log(res.rows[0]);
-  // });
-}, deviceInterval)
+  // Electricity
+  let usage = Math.round(Math.random() * 1000);
+  let generation = 500 + Math.round(Math.random() * 1500);
+  insertDeviceData(electricityDeviceId, "usage", usage)
+  insertDeviceData(electricityDeviceId, "generation", generation)
 
-// Electricity dummy data
-setInterval(() => {
-
-}, deviceInterval)
-
-// Crop quality dummy data
-setInterval(() => {
-
+  // Crop quality
+  let cqPH = 3 + Math.round(Math.random() * 8);
+  let moisture = 0 + Math.round(Math.random() * 100);
+  insertDeviceData(cqDeviceId, "ph", cqPH)
+  insertDeviceData(cqDeviceId, "moisture", moisture)
 }, deviceInterval)
