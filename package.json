@@ -8,6 +8,7 @@
     "all": "concurrently \"node server/server.js\" \"npm start --prefix SynopticProject\""
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "concurrently": "^7.2.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
