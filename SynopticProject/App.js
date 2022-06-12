@@ -48,11 +48,13 @@ export default function App() {
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
                 
-      <Stack.Navigator initialRouteName="InstalledModules" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login">
           {props => <Login {...props} setToken={setToken} />}
         </Stack.Screen>
-        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Signup">
+          {props => <Signup {...props} setToken={setToken} />}
+        </Stack.Screen>
         <Stack.Screen name="InstalledModules" component={InstalledModules} />
         <Stack.Screen name="AddModule" component={AddModule} />
 

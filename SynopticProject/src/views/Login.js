@@ -11,6 +11,8 @@ import RMTextInput from '../components/Inputs/TextInput';
 import RMButton from '../components/Inputs/Button';
 import RMText from '../components/Layout/RMText';
 
+import http from '../../AxiosConfiguration';
+
 export default function Login({setToken})
 {
     const initialFormState = {
@@ -19,25 +21,43 @@ export default function Login({setToken})
     }
     const [state, dispatch] = useReducer(loginReducer, initialFormState); 
 
-    const changeHandler = (name, e) => {
-        dispatch({type: 'FORM INPUT', field: name, payload: e.target.value});
+    const changeHandler = (name, val) => {
+        dispatch({type: 'FORM INPUT', field: name, payload: val});
     }
     
-    const handleSubmit = () =>  {
-        if(!state.username || !state.password)
-        {
-            Alert.alert("Input Error", "Please enter username and password!");
-            return;
-        }
-        fetch('http://localhost:3000/login', {
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json',
-            },
-            body:JSON.stringify({username:state.username, password:state.password})
+    // const handleSubmit = () =>  {
+    //     if(!state.username || !state.password)
+    //     {
+    //         Alert.alert("Input Error", "Please enter username and password!");
+    //         return;
+    //     }
+    //     fetch('http://localhost:3000/login', {
+    //         method:'POST',
+    //         headers:{
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body:JSON.stringify({username:state.username, password:state.password})
             
-        }).then(resp => resp.json()).then(token => setToken(token));
-    }
+    //     }).then(resp => resp.json()).then(token => setToken(token));
+    // }
+
+    const handleSubmit = () => {
+        // Validation here
+
+
+        http.post('/accounts/login', {
+            username: state.username,
+            password: state.password
+        }).then(res => {
+            console.log(res.data)
+
+            if (res.data.err) {
+                return;
+            }
+
+            props.setToken(res.data.token);
+        });
+    };
    
     return (
         <View style={shared.container}>
@@ -45,8 +65,8 @@ export default function Login({setToken})
 
             <Card centered={true} marginTop={30}>
                 <View>
-                    <RMTextInput placeholder="Username" onChange={e => {changeHandler('username', e)}} />
-                    <RMTextInput placeholder="Password" onChange={e => {changeHandler('password', e)}} secureTextEntry={true}/>
+                    <RMTextInput placeholder="Username" onChangeText={v => changeHandler('username', v)} />
+                    <RMTextInput placeholder="Password" onChangeText={v => changeHandler('password', v)} secureTextEntry={true}/>
                     <RMButton title="Login" onPress={() => handleSubmit()}/>
                 </View>
 
