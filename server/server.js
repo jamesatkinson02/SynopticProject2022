@@ -2,6 +2,16 @@ const express = require("express");
 //const cors = require('cors');
 const dotenv = require('dotenv');
 const app = express();
+const db = require('./db');
+
+db.query('SELECT NOW()', (err, res) => {
+    if (err) {
+        console.error(err);
+        return;
+    }
+
+    console.log(res.rows[0]);
+});
 
 app.use(express.json());
 

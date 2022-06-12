@@ -28,7 +28,7 @@ const ModuleButton = (props) => {
       <Card marginTop={30} padding={10}>
         <View style={shared.moduleTopBar}>
           <RMText style={[textStyles.largerText, textStyles.textDark1]}>{props.moduleName}</RMText>
-          <RMText style={[textStyles.largerText, textStyles.textDark1]}>100%</RMText>
+          <RMText style={[textStyles.largerText, textStyles.textDark1]}>{props.deviceCharge}</RMText>
         </View>
 
         <StatisticsContainer>

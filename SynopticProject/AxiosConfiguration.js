@@ -4,7 +4,9 @@ import { Platform } from "react-native";
 import Constants from "expo-constants";
 const { manifest } = Constants;
 
-const uri = `http://${manifest.debuggerHost.split(':').shift()}:5000`;
+let port = 5000;
+
+const uri = `http://${manifest.debuggerHost.split(':').shift()}:${port}`;
 
 const http = axios.create({
   baseURL: uri,
