@@ -37,8 +37,8 @@ const CropQualityPage = () => {
 
   return(
     <PageWrapper title={'Crop quality management'}>
-      <Card marginTop={30}>
-        <OverallQuality/>
+      <Card marginTop={30} centered={true}>
+        <OverallQuality rating={99}/>
       </Card>
 
       <PillSelection marginTop={30} marginBottom={15}>
