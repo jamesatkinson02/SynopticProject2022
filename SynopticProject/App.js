@@ -55,6 +55,8 @@ export default function App() {
         <Stack.Screen name="Signup">
           {props => <Signup {...props} setToken={setToken} />}
         </Stack.Screen>
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="InstalledModules" component={InstalledModules} />
         <Stack.Screen name="AddModule" component={AddModule} />
 
