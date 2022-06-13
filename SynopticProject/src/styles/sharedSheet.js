@@ -189,6 +189,7 @@ export const shared = StyleSheet.create({
     alignItems: 'center',
     flex:1,
     position:'relative',
+    marginTop: -40,
   },
   borderWrapper:{
     display:'flex',

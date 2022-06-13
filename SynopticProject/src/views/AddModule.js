@@ -6,6 +6,11 @@ import PageWrapper from "../components/Layout/PageWrapper";
 import Card from "../components/Layout/Card";
 import RMTextInput from "../components/Inputs/TextInput";
 import RMButton from "../components/Inputs/Button";
+import RMText from "../components/Layout/RMText";
+
+import { shared } from "../styles/sharedSheet";
+import { textStyles } from "../styles/textSheet";
+import http from "../../AxiosConfiguration";
 
 const QRScanner = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -42,17 +47,30 @@ const AddModule = (props) => {
     setDeviceID(data);
   };
 
+  const submitData = () => {
+    http.post('/devices/register-device', { deviceId: deviceID })
+    .then(res => {
+      if (res.data.err) {
+        console.log(res.data.err)
+      }
+
+      let newDevice = res.data.newDevice;
+      // Store new device here
+    });
+  };
+
   return (
     <>
-      <PageWrapper title={'Add module'}>
+      <View style={shared.container}>
+        <RMText style={[textStyles.header, textStyles.textDark2]}>Add device</RMText>
         <Card marginTop={30} centered={true}>
           <View>
             <RMTextInput placeholder="Device ID" onChangeText={setDeviceID} value={deviceID}/>
-            <RMButton title={'Add device'}/>
+            <RMButton title={'Register'} onPress={submitData}/>
             <RMButton title={'Scan QR code'} marginTop={30} onPress={() => { setScanned(false); setScanEnabled(true) }}/>
           </View>
         </Card>
-      </PageWrapper>
+      </View>
 
       <QRScanner scanEnabled={scanEnabled} scanned={scanned} codeScanned={codeScanned}/>
     </>

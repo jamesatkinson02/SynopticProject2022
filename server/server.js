@@ -19,6 +19,7 @@ dotenv.config();
 
 // Router imports
 const accountsRouter = require('./routes/accounts');
+const devicesRouter = require('./routes/devices');
 
 // Module routes
 const waterRouter = require('./routes/modules/water');
@@ -27,6 +28,7 @@ const cqRouter = require('./routes/modules/cropQuality');
 
 // Routers
 app.use('/accounts', accountsRouter);
+app.use('/devices', devicesRouter);
 
 // Module routers
 app.use('/water', waterRouter);
