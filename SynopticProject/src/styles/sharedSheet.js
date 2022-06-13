@@ -220,12 +220,18 @@ export const shared = StyleSheet.create({
     width: '50%',
     height:'100%',
     backgroundColor: 'rgba(242, 245, 243, 1)',
-    paddingTop: 0,
+    paddingTop: 75,
+  },
+  sideBarClosed:{
+    width:0
   },
   hamburgerSelector:{
     marginTop: 40,
     left: 30,
     marginBottom: 20,
+  },
+  linkPressed:{
+    backgroundColor:'rgba(192,192,192,1)'
   }
 })
 
