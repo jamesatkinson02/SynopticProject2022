@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Platform } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Constants from "expo-constants";
 const { manifest } = Constants;
@@ -15,12 +15,11 @@ const http = axios.create({
   }
 });
 
+http.interceptors.request.use(async config => {
+  const token = await AsyncStorage.getItem('token');
+  config.headers.authtoken = token;
 
-// Add the token to all request headers
-// http.interceptors.request.use(config => {
-//   const token = window.sessionStorage.getItem('token');
-//   config.headers.authorisation = token;
-//   return config;
-// });
+  return config;
+});
 
 export default http;

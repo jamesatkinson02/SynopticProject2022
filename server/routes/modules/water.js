@@ -11,7 +11,7 @@ getDataWithFrequency('f021d188ae2ba5ad', 'content', 'Monthly').then(res => {
 });
 
 router.route('/content-data').get(async (req, res) => {
-  
+  res.send("hi")
 });
 
 module.exports = router;

@@ -21,7 +21,7 @@ export default function Login(props)
     const { token, saveToken } = useContext(AuthContext);
     const initialFormState = {
         username: '',
-        password:'',
+        password: '',
     }
     const [state, dispatch] = useReducer(loginReducer, initialFormState); 
 
@@ -59,6 +59,7 @@ export default function Login(props)
             }
 
             saveToken(res.data.token);
+            //saveDeviceData(res.data.devices);
        
             props.navigation.navigate('InstalledModules');
             

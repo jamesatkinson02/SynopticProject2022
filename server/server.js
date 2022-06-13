@@ -3,6 +3,7 @@ const express = require("express");
 const dotenv = require('dotenv');
 const app = express();
 const db = require('./db');
+const jwtMiddleware = require('./middleware/jwtMiddleware');
 
 db.query('SELECT NOW()', (err, res) => {
     if (err) {
@@ -13,7 +14,9 @@ db.query('SELECT NOW()', (err, res) => {
     console.log(res.rows[0]);
 });
 
+// Middlewares
 app.use(express.json());
+app.use(jwtMiddleware);
 
 dotenv.config();
 

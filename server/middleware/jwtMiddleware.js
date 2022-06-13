@@ -4,8 +4,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const jwtMiddleware = (req, res, next) => {
-  let token = req.headers.authorisation;
-  
+  let token = req.headers.authtoken;
+
   if (token != 'null') {
     jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
       req.body.tokenPayload = decoded;

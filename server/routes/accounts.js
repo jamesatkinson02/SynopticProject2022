@@ -77,14 +77,18 @@ router.route('/sign-up').post(async (req, res) => {
 });
 
 router.route('/login').post(async (req, res) => {
-  //generate new session token
-  // jwt.sign({name: req.body.username}, process.env.TOKEN_SECRET, {expiresIn: '1h'}, function(err, tok)
-  // {
-  //   res.send({token:tok});
-  // });
-
   let username = req.body.username;
   let password = req.body.password;
+
+  if (username.length === 0) {
+    res.send({ err: "Please enter a username" });
+    return;
+  }
+
+  if (password.length == 0) {
+    res.send({ err: "Please enter a password" });
+    return;
+  }
 
   db.query('SELECT * FROM accounts WHERE username=$1', [username])
   .then(account => {
@@ -108,8 +112,20 @@ router.route('/login').post(async (req, res) => {
           process.env.TOKEN_SECRET,
           { expiresIn: "1h" }
         );
-  
-        res.send({ token: token, username: accData.username });
+
+        db.query('SELECT * FROM devices WHERE owner=$1',
+        [accData.username])
+        .then(devices => {
+          res.send({
+            token: token,
+            username: accData.username,
+            devices: devices.rows
+          });
+        })
+        .catch(err => {
+          console.error(err);
+          res.send({ err: "Database error" });
+        });
       } else {
         res.send({ err: "Couldn't find an account with that username and password combination" });
       }
