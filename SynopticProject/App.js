@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import { Alert, StyleSheet, Text, View, StatusBar } from 'react-native';
 
 import Login from "./src/views/Login"
@@ -30,8 +30,18 @@ import {AuthContext, ContextProvider} from './src/hooks/useToken'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 
-const App = () => {  
+let SignOut = (props) => {
   const { token, saveToken } = useContext(AuthContext);
+
+  useEffect(() => {
+    saveToken('');
+  }, []);
+
+  return <></>;
+};
+
+const App = () => {
+  var { token, saveToken } = useContext(AuthContext);
   let [state, setState] = useState(false);
 
   let [fontsLoaded] = useFonts({
@@ -45,31 +55,36 @@ const App = () => {
   }
 
   let sidebarHeight = StatusBar.currentHeight + shared.sideBarSheet.paddingTop;
-
-
   const initialRouteName = token ? 'InstalledModules' : 'Login';
  
   return (
-    
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
-                
-      <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Login">
-          {props => <Login {...props}/>}
-        </Stack.Screen>
-        <Stack.Screen name="Signup">
-          {props => <Signup {...props} />}
-        </Stack.Screen>
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="InstalledModules" component={InstalledModules} />
-        <Stack.Screen name="AddModule" component={AddModule} />
 
-        {/* Module views */}
-        <Stack.Screen name="Water" component={WaterPage} />
-        <Stack.Screen name="Electricity" component={ElectricityPage} />
-        <Stack.Screen name="CropQuality" component={CropQualityPage} />
+      <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
+        {
+          token ? 
+          <>
+            <Stack.Screen name="InstalledModules" component={InstalledModules} />
+            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="AddModule" component={AddModule} />
+            <Stack.Screen name="SignOut" component={SignOut} />
+
+            {/* Module views */}
+            <Stack.Screen name="Water" component={WaterPage} />
+            <Stack.Screen name="Electricity" component={ElectricityPage} />
+            <Stack.Screen name="CropQuality" component={CropQualityPage} />
+          </> :
+          <>
+            <Stack.Screen name="Login">
+              {props => <Login {...props}/>}
+            </Stack.Screen>
+            <Stack.Screen name="Signup">
+              {props => <Signup {...props} />}
+            </Stack.Screen>
+          </>
+        }
       </Stack.Navigator>
 
       {state ? <Sidebar style={[shared.sideBarSheet, { paddingTop: Platform.OS === "android" ? sidebarHeight : 0 }]} onClick={() => setState(false)}></Sidebar> : null}
@@ -80,9 +95,9 @@ const App = () => {
 export default function AppWrapper()
 {
   return(
-      <ContextProvider>
-        <App />  
-      </ContextProvider>
-      );
+    <ContextProvider>
+      <App />  
+    </ContextProvider>
+  );
 }
 

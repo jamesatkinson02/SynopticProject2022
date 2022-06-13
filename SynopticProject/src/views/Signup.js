@@ -10,8 +10,13 @@ import http from '../../AxiosConfiguration';
 import formReducer from '../reducers/formReducer';
 import { useReducer } from 'react';
 
+import { AuthContext } from '../hooks/useToken';
+import { useContext } from 'react';
+
 export default function Signup(props)
 {
+    const { token, saveToken, deviceData, saveDeviceData } = useContext(AuthContext);
+
     const initialFormState = {
         username: '',
         fname: '',
@@ -20,7 +25,6 @@ export default function Signup(props)
         password: '',
         confirm: '',
     };
-    
     const [state, dispatch] = useReducer(formReducer, initialFormState); 
 
     const changeHandler = (name, val) => {
@@ -28,8 +32,6 @@ export default function Signup(props)
     }
 
     const submit = () => {
-        
-
         http.post('/accounts/sign-up', {
             username: state.username,
             fname: state.fname,
@@ -37,13 +39,12 @@ export default function Signup(props)
             phone: state.phone,
             password: state.password,
         }).then(res => {
-            console.log(res.data)
-
             if (res.data.err) {
                 return;
             }
 
-            props.setToken(res.data.token);
+            saveToken(res.data.token);
+            saveDeviceData([]);
         });
     };
 

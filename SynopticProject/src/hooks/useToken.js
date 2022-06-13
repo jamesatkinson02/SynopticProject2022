@@ -7,6 +7,7 @@ const AuthContext = createContext({});
 const ContextProvider = ({children}) =>
 {
     const [token, setToken] = useState('');
+    const [deviceData, setDeviceData] = useState([]);
 
     const getToken = async () => {
         try{
@@ -23,25 +24,47 @@ const ContextProvider = ({children}) =>
     }
 
     const saveToken = async (userToken) => {
-        try{
+        try {
+            setToken(userToken);
             await AsyncStorage.setItem('token', JSON.stringify(userToken));
             //configure axios headers
             //...
-
-            setToken(userToken.token);
-    
         } catch(err)
         {
-            Promise.error(err);
+            console.error(err);
         }
     }
+
+    const getDeviceData = async () => {
+        try {
+            let deviceDataStr = await AsyncStorage.getItem('deviceData');
+            let deviceData = JSON.parse(deviceDataStr);
+            setDeviceData(deviceData);
+        } catch(err) {
+            console.error(err);
+        }
+    };
+
+    const saveDeviceData = async (deviceData) => {
+        try {
+            let deviceDataStr = JSON.stringify(deviceData);
+            setDeviceData(deviceData);
+            await AsyncStorage.setItem('deviceData', deviceDataStr);
+        } catch(err) {
+            Promise.error(err);
+        }
+    };
 
     useEffect(() => {
         getToken();
     }, []);
 
+    useEffect(() => {
+        getDeviceData();
+    }, []);
+
     return (
-        <AuthContext.Provider value = {{token, saveToken}}>
+        <AuthContext.Provider value = {{token, saveToken, deviceData, saveDeviceData}}>
             {children}
         </AuthContext.Provider>
     )
