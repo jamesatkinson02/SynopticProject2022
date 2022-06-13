@@ -15,6 +15,7 @@ const http = axios.create({
   }
 });
 
+
 // Add the token to all request headers
 // http.interceptors.request.use(config => {
 //   const token = window.sessionStorage.getItem('token');

@@ -1,26 +1,50 @@
-import {useState} from 'react';
+import {createContext, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const AuthContext = createContext({});
+
 /* custom hook for accessing the token  */
-export default function useToken()
+const ContextProvider = ({children}) =>
 {
+    const [token, setToken] = useState('');
 
     const getToken = async () => {
-        const tokenStr= await AsyncStorage.getItem('token');
-        const jsonToken = JSON.parse(tokenStr);
-        return jsonToken?.token;
+        try{
+            const tokenStr= await AsyncStorage.getItem('token');
+            const jsonToken = JSON.parse(tokenStr);
+            //configure axios headers
+            //...
+            setToken(jsonToken);
+    
+        } catch(err)
+        {
+            console.error(err);
+        }
     }
 
-    const [token, setToken] = useState(getToken());
+    const saveToken = async (userToken) => {
+        try{
+            await AsyncStorage.setItem('token', JSON.stringify(userToken));
+            //configure axios headers
+            //...
 
-    const saveToken = async userToken => {
-        await AsyncStorage.setItem('token', JSON.stringify(userToken));
-        setToken(userToken.token);
-    };
-
-    return {
-        setToken: saveToken,
-        token
+            setToken(userToken.token);
+    
+        } catch(err)
+        {
+            Promise.error(err);
+        }
     }
+
+    useEffect(() => {
+        getToken();
+    }, []);
+
+    return (
+        <AuthContext.Provider value = {{token, saveToken}}>
+            {children}
+        </AuthContext.Provider>
+    )
 
 }
+export { AuthContext, ContextProvider };

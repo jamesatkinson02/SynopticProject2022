@@ -1,4 +1,4 @@
-import {React, useReducer} from 'react';
+import {React, useReducer, useContext} from 'react';
 import PropTypes from 'prop-types';
 import {shared} from '../styles/sharedSheet';
 import { textStyles } from '../styles/textSheet';
@@ -13,8 +13,12 @@ import RMText from '../components/Layout/RMText';
 
 import http from '../../AxiosConfiguration';
 
-export default function Login({setToken})
+import {AuthContext, ContextProvider} from '../hooks/useToken'
+import { Navigate } from 'react-router-dom';
+
+export default function Login(props)
 {
+    const { token, saveToken } = useContext(AuthContext);
     const initialFormState = {
         username: '',
         password:'',
@@ -44,7 +48,6 @@ export default function Login({setToken})
     const handleSubmit = () => {
         // Validation here
 
-
         http.post('/accounts/login', {
             username: state.username,
             password: state.password
@@ -55,7 +58,10 @@ export default function Login({setToken})
                 return;
             }
 
-            props.setToken(res.data.token);
+            saveToken(res.data.token);
+       
+            props.navigation.navigate('InstalledModules');
+            
         });
     };
    
@@ -78,6 +84,8 @@ export default function Login({setToken})
     )
 }
 
+/*
 Login.propTypes = {
     setToken: PropTypes.func.isRequired
 }
+*/

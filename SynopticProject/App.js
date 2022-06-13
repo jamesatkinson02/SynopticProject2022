@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler'
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import { Alert, StyleSheet, Text, View, StatusBar } from 'react-native';
 
 import Login from "./src/views/Login"
@@ -26,10 +26,12 @@ import { shared } from './src/styles/sharedSheet';
 import { useFonts } from 'expo-font';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import {AuthContext, ContextProvider} from './src/hooks/useToken'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 
-export default function App() {
-  let {token, setToken} = useToken();
+const App = () => {  
+  const { token, saveToken } = useContext(AuthContext);
   let [state, setState] = useState(false);
 
   let [fontsLoaded] = useFonts({
@@ -43,17 +45,21 @@ export default function App() {
   }
 
   let sidebarHeight = StatusBar.currentHeight + shared.sideBarSheet.paddingTop;
-  
+
+
+  const initialRouteName = token ? 'InstalledModules' : 'Login';
+ 
   return (
+    
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
                 
-      <Stack.Navigator initialRouteName="InstalledModules" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login">
-          {props => <Login {...props} setToken={setToken} />}
+          {props => <Login {...props}/>}
         </Stack.Screen>
         <Stack.Screen name="Signup">
-          {props => <Signup {...props} setToken={setToken} />}
+          {props => <Signup {...props} />}
         </Stack.Screen>
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Settings" component={Settings} />
@@ -69,5 +75,14 @@ export default function App() {
       {state ? <Sidebar style={[shared.sideBarSheet, { paddingTop: Platform.OS === "android" ? sidebarHeight : 0 }]} onClick={() => setState(false)}></Sidebar> : null}
     </NavigationContainer>
   );
+}
+
+export default function AppWrapper()
+{
+  return(
+      <ContextProvider>
+        <App />  
+      </ContextProvider>
+      );
 }
 
