@@ -14,17 +14,17 @@ let cqDeviceId = '';
 setInterval(() => {
   // Water
   let waterPH = 3 + Math.round(Math.random() * 8);
-  insertDeviceData(waterDeviceId, "ph", waterPH)
+  insertDeviceData(waterDeviceId, "ph", waterPH);
 
   // Electricity
-  let usage = Math.round(Math.random() * 1000);
   let generation = 500 + Math.round(Math.random() * 1500);
-  insertDeviceData(electricityDeviceId, "usage", usage)
-  insertDeviceData(electricityDeviceId, "generation", generation)
+  let usage = Math.round(Math.random() * generation);
+  insertDeviceData(electricityDeviceId, "usage", usage);
+  insertDeviceData(electricityDeviceId, "generation", generation);
 
   // Crop quality
   let cqPH = 3 + Math.round(Math.random() * 8);
   let moisture = 0 + Math.round(Math.random() * 100);
-  insertDeviceData(cqDeviceId, "ph", cqPH)
-  insertDeviceData(cqDeviceId, "moisture", moisture)
+  insertDeviceData(cqDeviceId, "ph", cqPH);
+  insertDeviceData(cqDeviceId, "moisture", moisture);
 }, deviceInterval)
