@@ -10,7 +10,9 @@ import RMButton from '../Inputs/Button';
 import { AuthContext } from '../../hooks/useToken';
 import { useContext } from 'react';
 
-import {SlidingView} from '../../components/SlidingView'
+import {SlidingView} from './SlidingView'
+import {FadeView} from './FadeView'
+
 
 const SideBarConfig = [
 {
@@ -53,7 +55,7 @@ const  Sidebar = ({style, onClick}) => {
 
     return(
         <SlidingView style={[StyleSheet.flatten(style), shared.shadow]} from={-200} to={10} duration={450}>
-            <View style={{margin:10, bottom:-40}}>
+            <FadeView style={{margin:10, bottom:-40}} from={0} to={1} duration={700}>
             <Icon name="close" size={30} color={'black'} onPress={onClick}></Icon>
             {
                 token ?
@@ -61,7 +63,7 @@ const  Sidebar = ({style, onClick}) => {
                 <>{SideBarConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i} onPress={onClick}>{elem.name}</Link>)}</>
             }
             
-            </View>
+            </FadeView>
             
         </SlidingView>
     );

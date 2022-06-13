@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Animated, Text, View } from 'react-native';
-import {shared} from '../styles/sharedSheet'
+import {shared} from '../../styles/sharedSheet'
 const SlidingView = (props) => {
     const slideAnim = useRef(new Animated.Value(props.from)).current;
 
