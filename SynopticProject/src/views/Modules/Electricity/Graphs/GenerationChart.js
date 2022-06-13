@@ -1,8 +1,8 @@
 import { LineChart } from "react-native-chart-kit";
-import { waterStyles } from "../../../../styles/Modules/waterSheet";
+import { electricityStyles } from "../../../../styles/Modules/electricityStyles";
 
 const legend = "Production (kWH)";
-const chartStyle = waterStyles.graph;
+const chartStyle = electricityStyles.usageChart;
 
 const chartConfig = {
   backgroundGradientFrom: "#FFFF",
@@ -21,7 +21,7 @@ const GenerationChart = (props) => {
     datasets: [
       {
         data: props.data,
-        color: (opacity = 1) => `rgba(41,144,203, ${opacity})`,
+        color: (opacity = 1) => `rgba(245, 199, 17, ${opacity})`,
         strokeWidth: 3
       }
     ],

@@ -1,15 +1,15 @@
 import { LineChart } from "react-native-chart-kit";
-import { waterStyles } from "../../../../styles/Modules/waterSheet";
+import { electricityStyles } from "../../../../styles/Modules/electricityStyles";
 
 const legend = "Usage (kWH)";
-const chartStyle = waterStyles.graph;
+const chartStyle = electricityStyles.usageChart;
 
 const chartConfig = {
   backgroundGradientFrom: "#FFFF",
   backgroundGradientFromOpacity: 0,
   backgroundGradientTo: "#FFFF",
   backgroundGradientToOpacity: 0.5,
-  color: (opacity = 1) => `rgba(64,64,64, ${opacity})`,
+  color: (opacity = 1) => `rgba(100,100,100, ${opacity})`,
   strokeWidth: 3,
   barPercentage: 0.5,
   useShadowColorFromDataset: false,
@@ -21,7 +21,7 @@ const UsageChart = (props) => {
     datasets: [
       {
         data: props.data,
-        color: (opacity = 1) => `rgba(41,144,203, ${opacity})`,
+        color: (opacity = 1) => `rgba(245, 142, 17, ${opacity})`,
         strokeWidth: 3
       }
     ],

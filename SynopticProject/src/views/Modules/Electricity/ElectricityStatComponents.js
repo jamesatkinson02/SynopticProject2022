@@ -1,6 +1,7 @@
 import { shared } from "../../../styles/sharedSheet";
 import CurrentUsage from "./Graphs/CurrentUsage";
 import CurrentGeneration from "./Graphs/CurrentGeneration";
+import { electricityStyles } from "../../../styles/Modules/electricityStyles";
 
 var usageData = {
   data: [0.6],
@@ -16,8 +17,8 @@ var usageMax = generationData.data * generationMax;
 const ElectricityStatComponents = (props) => {
   return (
     <>
-      <CurrentUsage marginRight={10} containerPadding={0} data={usageData} containerWidth={80} max={usageMax} unit={'kW'}/>
-      <CurrentGeneration marginLeft={10} containerPadding={0} data={generationData} containerWidth={80} max={generationMax} unit={'kW'}/>
+      <CurrentUsage containerPadding={0} data={usageData} containerWidth={100} max={usageMax} unit={'kW'}/>
+      <CurrentGeneration marginLeft={10} containerPadding={0} data={generationData} containerWidth={100} max={generationMax} unit={'kW'}/>
       {/* <ContentGraph containerPadding={0} contentData={contentData} containerWidth={80}/> */}
     </>
   );

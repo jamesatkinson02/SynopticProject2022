@@ -5,6 +5,7 @@ import moduleReducer from "../../../reducers/moduleReducer";
 import { PillSelection, Pill } from "../../../components/Inputs/PillSelection";
 import Card from "../../../components/Layout/Card";
 import { Grid, GridItem } from "../../../components/Layout/Grid";
+import { View, Image } from "react-native";
 
 // Graphs
 import CurrentGeneration from "./Graphs/CurrentGeneration";
@@ -14,6 +15,7 @@ import UsageChart from "./Graphs/UsageChart";
 
 // Styles
 import { shared } from "../../../styles/sharedSheet";
+import { electricityStyles } from "../../../styles/Modules/electricityStyles";
 
 const ElectricityPage = () => {
   const [state, dispatch] = useReducer(moduleReducer, {
