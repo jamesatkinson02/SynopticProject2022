@@ -51,7 +51,8 @@ const AddModule = (props) => {
     http.post('/devices/register-device', { deviceId: deviceID })
     .then(res => {
       if (res.data.err) {
-        console.log(res.data.err)
+        console.log(res.data.err);
+        return;
       }
 
       let newDevice = res.data.newDevice;
