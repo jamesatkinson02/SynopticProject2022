@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import {shared} from '../styles/sharedSheet';
 import { textStyles } from '../styles/textSheet';
 import {Text, View, Alert,} from 'react-native';
-import {loginReducer} from '../reducers/loginReducer';
+import formReducer from '../reducers/formReducer';
 import {Link} from '@react-navigation/native';
 
 import Card from '../components/Layout/Card';
 import RMTextInput from '../components/Inputs/TextInput';
 import RMButton from '../components/Inputs/Button';
 import RMText from '../components/Layout/RMText';
+import FormError from '../components/Layout/FormError';
 
 import http from '../../AxiosConfiguration';
 
@@ -23,10 +24,14 @@ export default function Login(props)
         username: '',
         password: '',
     }
-    const [state, dispatch] = useReducer(loginReducer, initialFormState); 
+    const [state, dispatch] = useReducer(formReducer, initialFormState); 
 
     const changeHandler = (name, val) => {
         dispatch({type: 'FORM INPUT', field: name, payload: val});
+    }
+
+    const errorHandler = (err) => {
+        dispatch({ type: 'FORM ERROR', error: err });
     }
     
     // const handleSubmit = () =>  {
@@ -55,6 +60,7 @@ export default function Login(props)
             console.log(res.data)
 
             if (res.data.err) {
+                errorHandler(res.data.err);
                 return;
             }
 
@@ -76,9 +82,11 @@ export default function Login(props)
                     <RMButton title="Login" onPress={() => handleSubmit()}/>
                 </View>
 
-                <RMText style={[textStyles.smallItalic, textStyles.textDark1]}>
-                    Don't have an account? <Link style={[textStyles.smallItalic, textStyles.textDark1]} to={{ screen: 'Signup'}}> Sign up here </Link>
+                <RMText style={[textStyles.textDark1, { marginTop: 10 }]}>
+                    Don't have an account? <Link style={[textStyles.textDark1, { color: '#2555f5' }]} to={{ screen: 'Signup'}}> Sign up here </Link>
                 </RMText>
+                
+                { state.error ? <FormError>{state.error}</FormError> : <></> }
             </Card>
         </View>
     )

@@ -6,6 +6,8 @@ import Card from '../components/Layout/Card';
 import RMTextInput from '../components/Inputs/TextInput';
 import RMButton from '../components/Inputs/Button';
 import RMText from '../components/Layout/RMText';
+import FormError from '../components/Layout/FormError';
+
 import http from '../../AxiosConfiguration';
 import formReducer from '../reducers/formReducer';
 import { useReducer } from 'react';
@@ -31,6 +33,10 @@ export default function Signup(props)
         dispatch({type: 'FORM INPUT', field: name, payload: val});
     }
 
+    const errorHandler = (err) => {
+        dispatch({ type: 'FORM ERROR', error: err });
+    }
+
     const submit = () => {
         http.post('/accounts/sign-up', {
             username: state.username,
@@ -39,7 +45,10 @@ export default function Signup(props)
             phone: state.phone,
             password: state.password,
         }).then(res => {
+            console.log(res.data)
+
             if (res.data.err) {
+                errorHandler(res.data.err);
                 return;
             }
 
@@ -61,6 +70,8 @@ export default function Signup(props)
                 <RMTextInput placeholder="Password" secureTextEntry={true} onChangeText={v => changeHandler('password', v)}/>
                 <RMTextInput placeholder="Confirm password" secureTextEntry={true} onChangeText={v => changeHandler('confirm', v)}/>
                 <RMButton title="Sign up" onPress={submit}/>
+
+                { state.error ? <FormError>{state.error}</FormError> : <></> }
             </View>
         </Card>
     </View>

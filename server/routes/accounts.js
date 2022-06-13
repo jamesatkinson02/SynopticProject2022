@@ -85,7 +85,7 @@ router.route('/login').post(async (req, res) => {
     return;
   }
 
-  if (password.length == 0) {
+  if (password.length === 0) {
     res.send({ err: "Please enter a password" });
     return;
   }
@@ -93,7 +93,7 @@ router.route('/login').post(async (req, res) => {
   db.query('SELECT * FROM accounts WHERE username=$1', [username])
   .then(account => {
     if (account.rowCount == 0) {
-      res.send({ err: "Acc not found" });
+      res.send({ err: "Couldn't find an account with that username and password combination" });
       return;
     }
 
