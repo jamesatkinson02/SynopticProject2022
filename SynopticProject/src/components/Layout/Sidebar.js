@@ -12,6 +12,10 @@ const SideBarConfig = [
     iconName: '',
 },
 {
+    name:'Installed Modules',
+    iconName: '',
+},
+{
     name: 'Settings',
     iconName:'',
 },
@@ -26,7 +30,7 @@ const  Sidebar = ({style, onClick}) => {
         <View style={style}>
             <View style={{margin:10, bottom:-40}}>
             <Icon name="close" size={30} color={'black'} onPress={onClick}></Icon>
-            {SideBarConfig.map((elem, i) => <RMButton marginTop={25} title={elem.name} key={i}/>)}
+            {SideBarConfig.map((elem, i) => <Link to={{screen:elem.name}} style={{fontSize:20, marginTop:20}} key={i}>{elem.name}</Link>)}
             </View>
         </View>
     );
