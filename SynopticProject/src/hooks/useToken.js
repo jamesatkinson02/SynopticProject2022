@@ -6,16 +6,17 @@ const AuthContext = createContext({});
 /* custom hook for accessing the token  */
 const ContextProvider = ({children}) =>
 {
-    const [token, setToken] = useState('');
+    const [accessToken, setAccessToken] = useState('');
+    const [refreshToken, setRefreshToken] = useState('');
     const [deviceData, setDeviceData] = useState([]);
 
-    const getToken = async () => {
+    const getAccessToken = async () => {
         try{
-            const tokenStr= await AsyncStorage.getItem('token');
+            const tokenStr= await AsyncStorage.getItem('accessToken');
             const jsonToken = JSON.parse(tokenStr);
             //configure axios headers
             //...
-            setToken(jsonToken);
+            setAccessToken(jsonToken);
     
         } catch(err)
         {
@@ -23,12 +24,35 @@ const ContextProvider = ({children}) =>
         }
     }
 
-    const saveToken = async (userToken) => {
+    const saveAccessToken = async (accessToken) => {
         try {
-            setToken(userToken);
-            await AsyncStorage.setItem('token', JSON.stringify(userToken));
+            setAccessToken(accessToken);
+            await AsyncStorage.setItem('accessToken', JSON.stringify(accessToken));
             //configure axios headers
             //...
+        } catch(err)
+        {
+            console.error(err);
+        }
+    }
+
+    const getRefreshToken = async () =>{
+        try
+        {
+            const refreshTokenStr = await AsyncStorage.getItem('refreshToken');
+            const refreshTokenJson = JSON.parse(refreshTokenStr);
+            setRefreshToken(refreshTokenJson);
+    
+        } catch(err)
+        {
+            console.error(err);
+        }
+    }
+
+    const saveRefreshToken = async (refreshToken) => {
+        try{
+            setRefreshToken(refreshToken);
+            await AsyncStorage.setItem('refreshToken', JSON.stringify(refreshToken));
         } catch(err)
         {
             console.error(err);
@@ -56,15 +80,20 @@ const ContextProvider = ({children}) =>
     };
 
     useEffect(() => {
-        getToken();
+        getAccessToken();
     }, []);
+
+    useEffect(() => {
+        getRefreshToken();
+    }, []);
+
 
     useEffect(() => {
         getDeviceData();
     }, []);
 
     return (
-        <AuthContext.Provider value = {{token, saveToken, deviceData, saveDeviceData}}>
+        <AuthContext.Provider value = {{accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData}}>
             {children}
         </AuthContext.Provider>
     )

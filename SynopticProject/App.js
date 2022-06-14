@@ -31,17 +31,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 
 let SignOut = (props) => {
-  const { token, saveToken } = useContext(AuthContext);
+  const { accessToken, saveAccessToken, refreshToken, saveRefreshToken, saveDeviceData } = useContext(AuthContext);
 
   useEffect(() => {
-    saveToken('');
+    saveAccessToken('');
+    saveRefreshToken('');
+    saveDeviceData([]);
+    AsyncStorage.clear();
   }, []);
 
   return <></>;
-};
+}
 
 const App = () => {
-  var { token, saveToken } = useContext(AuthContext);
+  var { accessToken, saveAccessToken } = useContext(AuthContext);
   let [state, setState] = useState(false);
 
   let [fontsLoaded] = useFonts({
@@ -55,15 +58,15 @@ const App = () => {
   }
 
   let sidebarHeight = StatusBar.currentHeight + shared.sideBarSheet.paddingTop;
-  const initialRouteName = token ? 'InstalledModules' : 'Login';
- 
+  const initialRouteName = accessToken ? 'InstalledModules' : 'Login';
+
   return (
     <NavigationContainer>
       <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
 
       <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
         {
-          token ? 
+          accessToken ? 
           <>
             <Stack.Screen name="InstalledModules" component={InstalledModules} />
             <Stack.Screen name="Profile" component={Profile} />

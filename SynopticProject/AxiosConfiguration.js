@@ -16,8 +16,12 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(async config => {
-  const token = await AsyncStorage.getItem('token');
+  const tokenStr = await AsyncStorage.getItem('accessToken');
+  const refreshTokenStr = await AsyncStorage.getItem('refreshToken');
+  const token = JSON.parse(tokenStr);
+  const refreshToken = JSON.parse(refreshTokenStr);
   config.headers.authtoken = token;
+  config.headers.refreshtoken = refreshToken;
 
   return config;
 });

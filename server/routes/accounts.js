@@ -56,13 +56,17 @@ router.route('/sign-up').post(async (req, res) => {
       .then(newAccount => {
         let accData = newAccount.rows[0];
   
-        const token = jwt.sign(
+        const accessToken = jwt.sign(
           { username: accData.username },
           process.env.TOKEN_SECRET,
           { expiresIn: "1h" }
         );
+
+        const refreshToken = jwt.sign({username: accData.username}, process.env.TOKEN_SECRET, {
+          expiresIn:'15 days'
+        })
         
-        res.send({ token: token, username: accData.username });
+        res.send({ accessToken: accessToken, refreshToken: refreshToken, username: accData.username });
       })
       .catch(err => {
         console.error(err);
@@ -107,17 +111,22 @@ router.route('/login').post(async (req, res) => {
       }
 
       if (correct) {
-        const token = jwt.sign(
+        const accessToken = jwt.sign(
           { username: accData.username },
           process.env.TOKEN_SECRET,
           { expiresIn: "1h" }
         );
 
+        const refreshToken = jwt.sign({username: accData.username}, process.env.TOKEN_SECRET, {
+          expiresIn:'15 days'
+        })
+
         db.query('SELECT * FROM devices WHERE owner=$1',
         [accData.username])
         .then(devices => {
           res.send({
-            token: token,
+            accessToken: accessToken,
+            refreshToken: refreshToken,
             username: accData.username,
             devices: devices.rows
           });
@@ -137,16 +146,6 @@ router.route('/login').post(async (req, res) => {
   });
 
   //...
-});
-
-router.route('/verify-token').post(async (req, res) => {
-  jwt.verify(req.body.token, process.env.TOKEN_SECRET, function(err, decoded)
-  {
-    if(err)
-      res.status(401).send(err);
-    else
-      res.send(decoded);
-  })
 });
 
 module.exports = router;

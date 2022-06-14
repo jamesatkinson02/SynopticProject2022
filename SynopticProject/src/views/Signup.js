@@ -17,7 +17,7 @@ import { useContext } from 'react';
 
 export default function Signup(props)
 {
-    const { token, saveToken, deviceData, saveDeviceData } = useContext(AuthContext);
+    const { accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData } = useContext(AuthContext);
 
     const initialFormState = {
         username: '',
@@ -52,7 +52,9 @@ export default function Signup(props)
                 return;
             }
 
-            saveToken(res.data.token);
+            saveAccessToken(res.data.accessToken);
+            saveRefreshToken(res.data.refreshToken);
+            
             saveDeviceData([]);
         });
     };

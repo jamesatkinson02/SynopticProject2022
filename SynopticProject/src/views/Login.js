@@ -19,7 +19,7 @@ import { Navigate } from 'react-router-dom';
 
 export default function Login(props)
 {
-    const { token, saveToken, deviceData, saveDeviceData } = useContext(AuthContext);
+    const { accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData } = useContext(AuthContext);
     const initialFormState = {
         username: '',
         password: '',
@@ -64,7 +64,8 @@ export default function Login(props)
                 return;
             }
 
-            saveToken(res.data.token);
+            saveAccessToken(res.data.accessToken);
+            saveRefreshToken(res.data.refreshToken);
             saveDeviceData(res.data.devices || []);
        
            // props.navigation.navigate('InstalledModules');
