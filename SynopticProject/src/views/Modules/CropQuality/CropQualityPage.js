@@ -1,10 +1,12 @@
 import PageWrapper from "../../../components/Layout/PageWrapper";
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import moduleReducer from "../../../reducers/moduleReducer";
 import { PillSelection, Pill } from "../../../components/Inputs/PillSelection";
 import Card from "../../../components/Layout/Card";
 import { Grid, GridItem } from "../../../components/Layout/Grid";
+
+import http from '../../../../AxiosConfiguration';
 
 // Graphs
 import CurrentMoisture from "./Graphs/CurrentMoisture";
@@ -19,9 +21,10 @@ const CropQualityPage = () => {
   const [state, dispatch] = useReducer(moduleReducer, {
     data: {
       moistureData: [200, 450, 280, 800, 990, 430, 560],
+      moistureLabels: [],
       moistureFrequency: 'Daily',
-      currentMoisture: { data: [0.6] },
-      pHValue: 7,
+      currentMoisture: { data: [0] },
+      pHValue: 6.5,
     },
     layout: {
       chartWrapperWidth: 10,
@@ -29,11 +32,27 @@ const CropQualityPage = () => {
     }
   });
 
+  useEffect(() => {
+    http.post('/crop-quality/chart-data', {
+      deviceId: '17c1a13a0552aed9',
+      frequency: state.data.moistureFrequency
+    })
+    .then(res => {
+      let data = res.data.moisture.data.map(val => Math.round(val * 100));
+
+      dispatch({ type: 'GRAPH DATA', field: 'moistureData', payload: data })
+      dispatch({ type: 'GRAPH DATA', field: 'moistureLabels', payload: res.data.moisture.labels })
+
+      console.log(res.data.moisture.data)
+      console.log(res.data.moisture.labels)
+    });
+  }, [state.data.moistureFrequency]);
+
   const setFrequency = (freq) => {
     dispatch({ type: 'GRAPH DATA', field: 'moistureFrequency', payload: freq })
   };
 
-  let moistureLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+  let moistureLabels = state.data.moistureLabels;
   let rating = (Math.max(1 - (Math.abs(state.data.pHValue - 6.5) / 6.5), 0) + Math.max(1 - (Math.abs(state.data.currentMoisture.data - 0.4) / 0.4), 0)) / 2;
 
   return(
