@@ -11,7 +11,7 @@ const ContextProvider = ({children}) =>
 
     const getToken = async () => {
         try{
-            const tokenStr= await AsyncStorage.getItem('token');
+            const tokenStr = await AsyncStorage.getItem('token');
             const jsonToken = JSON.parse(tokenStr);
             //configure axios headers
             //...

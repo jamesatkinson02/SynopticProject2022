@@ -16,7 +16,8 @@ const http = axios.create({
 });
 
 http.interceptors.request.use(async config => {
-  const token = await AsyncStorage.getItem('token');
+  const tokenStr = await AsyncStorage.getItem('token');
+  const token = JSON.parse(tokenStr);
   config.headers.authtoken = token;
 
   return config;

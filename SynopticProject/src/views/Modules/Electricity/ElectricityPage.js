@@ -18,7 +18,9 @@ import UsageChart from "./Graphs/UsageChart";
 import { shared } from "../../../styles/sharedSheet";
 import { electricityStyles } from "../../../styles/Modules/electricityStyles";
 
-const ElectricityPage = () => {
+const ElectricityPage = ({ route }) => {
+  let deviceId = route.params.deviceId;
+
   const [state, dispatch] = useReducer(moduleReducer, {
     data: {
       usageData: [200, 450, 280, 800, 990, 430, 560],
@@ -50,7 +52,7 @@ const ElectricityPage = () => {
 
   useEffect(() => {
     http.post('/electricity/current-data', {
-      deviceId: 'ea30d16ee48ffda8'
+      deviceId: deviceId
     }).then(res => {
       graphDataHandler('currentUsage', res.data.usage.data);
       graphDataHandler('currentGeneration', res.data.generation.data);
@@ -59,7 +61,7 @@ const ElectricityPage = () => {
 
   useEffect(() => {
     http.post('/devices/chart-data', {
-      deviceId: 'ea30d16ee48ffda8',
+      deviceId: deviceId,
       field: 'usage',
       frequency: state.data.usageFrequency
     }).then(res => {
@@ -70,7 +72,7 @@ const ElectricityPage = () => {
 
   useEffect(() => {
     http.post('/devices/chart-data', {
-      deviceId: 'ea30d16ee48ffda8',
+      deviceId: deviceId,
       field: 'generation',
       frequency: state.data.generationFrequency
     }).then(res => {

@@ -31,10 +31,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createNativeStackNavigator();
 
 let SignOut = (props) => {
-  const { token, saveToken } = useContext(AuthContext);
+  const { token, saveToken, saveDeviceData } = useContext(AuthContext);
 
   useEffect(() => {
     saveToken('');
+    saveDeviceData([]);
   }, []);
 
   return <></>;
