@@ -20,7 +20,10 @@ import { useState } from "react";
 import moduleReducer from "../../../reducers/moduleReducer";
 import RMText from "../../../components/Layout/RMText";
 
-const WaterPage = () => {
+const WaterPage = ({ route }) => {
+  let deviceId = route.params.deviceId;
+  console.log(deviceId)
+
   const [state, dispatch] = useReducer(moduleReducer, {
     data: {
       pHValue: 7,
@@ -47,7 +50,7 @@ const WaterPage = () => {
 
   useEffect(() => {
     http.post('/water/current-data', {
-      deviceId: 'f021d188ae2ba5ad'
+      deviceId: deviceId
     }).then(res => {
       graphDataHandler('currentContent', res.data.content.data);
       graphDataHandler('clarityData', { data: [res.data.clarity.data] });
@@ -57,7 +60,7 @@ const WaterPage = () => {
 
   useEffect(() => {
     http.post('/devices/chart-data', {
-      deviceId: 'f021d188ae2ba5ad',
+      deviceId: deviceId,
       field: 'content',
       frequency: state.data.contentFrequency
     }).then(res => {

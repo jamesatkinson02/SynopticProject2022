@@ -15,21 +15,21 @@ router.route('/chart-data').post(async (req, res) => {
   res.send(data);
 });
 
-router.route('/register-device').get(async (req, res) => {
+router.route('/register-device').post(async (req, res) => {
   let deviceId = req.body.deviceId;
   let username = req.body.tokenPayload.username;
 
   console.log(username)
   console.log(deviceId)
 
-  if (deviceId.length == 0) {
+  if (deviceId.length === 0) {
     res.send({ err: "Please enter a device ID" });
     return;
   }
 
   db.query('SELECT * FROM devices WHERE device_id=$1', [deviceId])
   .then(device => {
-    if (device.rowCount == 0) {
+    if (device.rowCount === 0) {
       res.send({ err: "Device ID not found" });
       return;
     }

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { AuthContext } from "../hooks/useToken";
 
 import PageWrapper from "../components/Layout/PageWrapper";
 import Card from "../components/Layout/Card";
@@ -38,6 +39,8 @@ const QRScanner = (props) => {
 };
 
 const AddModule = (props) => {
+  const { deviceData, saveDeviceData } = useContext(AuthContext);
+
   const [scanEnabled, setScanEnabled] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [deviceID, setDeviceID] = useState("");
@@ -56,7 +59,8 @@ const AddModule = (props) => {
       }
 
       let newDevice = res.data.newDevice;
-      // Store new device here
+      let newDeviceData = [...deviceData, newDevice];
+      saveDeviceData(newDeviceData);
     });
   };
 

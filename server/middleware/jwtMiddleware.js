@@ -7,9 +7,12 @@ const jwtMiddleware = (req, res, next) => {
   let token = req.headers.authtoken;
   let refreshToken = req.headers.refreshToken;
 
-  if (token != 'null') {
-    jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+  if (token != 'null' && token != '') {
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+      console.log(err)
+      
       req.body.tokenPayload = decoded;
+      console.log(decoded)
       req.body.tokenValid = decoded != null && decoded.id != null;
     });
   } else {

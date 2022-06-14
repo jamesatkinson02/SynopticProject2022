@@ -17,7 +17,9 @@ import PHMeter from "../../../components/Graphs/PHMeter";
 // Styles
 import { shared } from "../../../styles/sharedSheet";
 
-const CropQualityPage = () => {
+const CropQualityPage = ({ route }) => {
+  let deviceId = route.params.deviceId;
+
   const [state, dispatch] = useReducer(moduleReducer, {
     data: {
       moistureData: [200, 450, 280, 800, 990, 430, 560],
@@ -42,7 +44,7 @@ const CropQualityPage = () => {
 
   useEffect(() => {
     http.post('/crop-quality/current-data', {
-      deviceId: '17c1a13a0552aed9'
+      deviceId: deviceId
     }).then(res => {
       graphDataHandler('currentMoisture', { data: [res.data.moisture.data] });
       graphDataHandler('pHValue', res.data.ph.data);
@@ -51,7 +53,7 @@ const CropQualityPage = () => {
 
   useEffect(() => {
     http.post('/devices/chart-data', {
-      deviceId: '17c1a13a0552aed9',
+      deviceId: deviceId,
       field: 'moisture',
       frequency: state.data.moistureFrequency
     }).then(res => {
