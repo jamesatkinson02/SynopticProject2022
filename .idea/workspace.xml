@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64590644-2bc2-48d0-a163-57a0810f88bc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/hooks/useToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/hooks/useToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SynopticProject/src/views/InstalledModules.js" beforeDir="false" afterPath="$PROJECT_DIR$/SynopticProject/src/views/InstalledModules.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,9 +41,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="443" y="149" width="1200" height="792" key="AVDManager" timestamp="1655214852922">
+    <state x="443" y="149" width="1200" height="792" key="AVDManager" timestamp="1655243507079">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="443" y="149" width="1200" height="792" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1655214852922" />
+    <state x="443" y="149" width="1200" height="792" key="AVDManager/0.0.1920.1040@0.0.1920.1040" timestamp="1655243507079" />
   </component>
 </project>

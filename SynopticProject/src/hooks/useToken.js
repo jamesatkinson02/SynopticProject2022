@@ -9,6 +9,7 @@ const ContextProvider = ({children}) =>
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
     const [deviceData, setDeviceData] = useState([]);
+    const [username, setUsername] = useState('');
 
     const getAccessToken = async () => {
         try{
@@ -67,6 +68,7 @@ const ContextProvider = ({children}) =>
         } catch(err) {
             console.error(err);
         }
+
     };
 
     const saveDeviceData = async (deviceData) => {
@@ -78,6 +80,27 @@ const ContextProvider = ({children}) =>
             Promise.error(err);
         }
     };
+
+    const getUsername = async (username) => {
+        try{
+            let usernameStr = await AsyncStorage.getItem('username');
+            let usernameData = JSON.parse(usernameStr);
+            setUsername(usernameData);
+        } catch(err)
+        {
+            console.error(err);
+        }
+    }
+
+    const saveUsername = async (username) => {
+        try{
+            setUsername(username);
+            await AsyncStorage.setItem('username', JSON.stringify(username));
+        } catch(err)
+        {
+            console.error(err);
+        }
+    }
 
     useEffect(() => {
         getAccessToken();
@@ -92,8 +115,12 @@ const ContextProvider = ({children}) =>
         getDeviceData();
     }, []);
 
+    useEffect(() => {
+        getUsername();
+    }, []);
+
     return (
-        <AuthContext.Provider value = {{accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData}}>
+        <AuthContext.Provider value = {{username, saveUsername, accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData}}>
             {children}
         </AuthContext.Provider>
     )

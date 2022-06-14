@@ -28,6 +28,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {AuthContext, ContextProvider} from './src/hooks/useToken'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 const Stack = createNativeStackNavigator();
 
 let SignOut = (props) => {
@@ -62,13 +63,13 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <HamburgerSelector size={30} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>
 
-      <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: true }}>
         {
           accessToken ? 
           <>
-            <Stack.Screen name="InstalledModules" component={InstalledModules} />
+            <Stack.Screen name="InstalledModules" component={InstalledModules} options={{title:'Installed Modules', 
+            headerLeft: () => (<HamburgerSelector size={20} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>)}}/>
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="AddModule" component={AddModule} />
@@ -76,11 +77,11 @@ const App = () => {
 
             {/* Module views */}
             <Stack.Screen name="Water" component={WaterPage} />
-            <Stack.Screen name="Electricity" component={ElectricityPage} />
-            <Stack.Screen name="CropQuality" component={CropQualityPage} />
+            <Stack.Screen name="Electricity" component={ElectricityPage} options={{title: 'Electricity'}} />
+            <Stack.Screen name="CropQuality" component={CropQualityPage} options={{title: 'Crop Quality'}}/>
           </> :
           <>
-            <Stack.Screen name="Login">
+            <Stack.Screen name="Login" options={{headerLeft: () => (<HamburgerSelector size={20} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>)}}>
               {props => <Login {...props}/>}
             </Stack.Screen>
             <Stack.Screen name="Signup">
@@ -89,6 +90,7 @@ const App = () => {
           </>
         }
       </Stack.Navigator>
+      
 
       {state ? <Sidebar style={[shared.sideBarSheet, { paddingTop: Platform.OS === "android" ? sidebarHeight : 0 }]} onClick={() => setState(false)}></Sidebar> : null}
     </NavigationContainer>

@@ -19,9 +19,6 @@ router.route('/register-device').post(async (req, res) => {
   let deviceId = req.body.deviceId;
   let username = req.body.tokenPayload.username;
 
-  console.log(username)
-  console.log(deviceId)
-
   if (deviceId.length === 0) {
     res.send({ err: "Please enter a device ID" });
     return;

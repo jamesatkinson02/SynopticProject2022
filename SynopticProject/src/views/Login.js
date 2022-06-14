@@ -16,10 +16,11 @@ import http from '../../AxiosConfiguration';
 
 import {AuthContext, ContextProvider} from '../hooks/useToken'
 import { Navigate } from 'react-router-dom';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Login(props)
 {
-    const { accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData } = useContext(AuthContext);
+    const {username, saveUsername, accessToken, saveAccessToken, refreshToken, saveRefreshToken, deviceData, saveDeviceData } = useContext(AuthContext);
     const initialFormState = {
         username: '',
         password: '',
@@ -67,6 +68,7 @@ export default function Login(props)
             saveAccessToken(res.data.accessToken);
             saveRefreshToken(res.data.refreshToken);
             saveDeviceData(res.data.devices || []);
+            saveUsername(res.data.username);
        
            // props.navigation.navigate('InstalledModules');
         });

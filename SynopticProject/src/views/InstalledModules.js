@@ -65,7 +65,6 @@ const ModuleButton = (props) => {
 const InstalledModules = (props) => {
   const { deviceData, saveDeviceData } = useContext(AuthContext);
 
-  console.log(deviceData);
 
   return (
     <PageWrapper title={'Installed modules'}>

@@ -39,11 +39,6 @@ const SideBarAuthConfig = [
     iconName: '',
 },
 {
-    name: 'Settings',
-    route:'Settings',
-    iconName:'',
-},
-{
     name: 'Sign out',
     route:'SignOut',
     iconName:'',

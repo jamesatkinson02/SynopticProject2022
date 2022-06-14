@@ -5,5 +5,6 @@ export const profileSheets = StyleSheet.create({
         width:150,
         height:150, 
         borderRadius:100, 
+        margin:20
     }
 });

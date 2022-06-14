@@ -68,7 +68,7 @@ export default function Signup(props)
                 <RMTextInput placeholder="Username" onChangeText={v => changeHandler('username', v)}/>
                 <RMTextInput placeholder="First name" onChangeText={v => changeHandler('fname', v)}/>
                 <RMTextInput placeholder="Last name" onChangeText={v => changeHandler('lname', v)}/>
-                <RMTextInput placeholder="Phone number" onChangeText={v => changeHandler('phone', v)}/>
+                <RMTextInput placeholder="Phone number" keyboardType="phone-pad" onChangeText={v => changeHandler('phone', v)}/>
                 <RMTextInput placeholder="Password" secureTextEntry={true} onChangeText={v => changeHandler('password', v)}/>
                 <RMTextInput placeholder="Confirm password" secureTextEntry={true} onChangeText={v => changeHandler('confirm', v)}/>
                 <RMButton title="Sign up" onPress={submit}/>
