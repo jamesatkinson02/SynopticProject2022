@@ -13,12 +13,12 @@ const jwtMiddleware = (req, res, next) => {
       
       req.body.tokenPayload = decoded;
       console.log(decoded)
-      req.body.tokenValid = decoded != null && decoded.id != null;
+      req.body.tokenValid = decoded != null;
     });
   } else {
     jwt.verify(refreshToken, process.env.JWT_KEY, (err, decoded) => {
       req.body.tokenPayload = decoded;
-      req.body.tokenValid = decoded != null && decided.id != null;
+      req.body.tokenValid = decoded != null;
     });
   }
 
