@@ -10,6 +10,10 @@ import RMButton from '../Inputs/Button';
 import { AuthContext } from '../../hooks/useToken';
 import { useContext } from 'react';
 
+import {SlidingView} from './SlidingView'
+import {FadeView} from './FadeView'
+
+
 const SideBarConfig = [
 {
     name: 'Login',
@@ -50,17 +54,18 @@ const  Sidebar = ({style, onClick}) => {
     var { token, saveToken } = useContext(AuthContext);
 
     return(
-        <View style={[StyleSheet.flatten(style), shared.shadow]}>
-            <View style={{margin:10, bottom:-40}}>
+        <SlidingView style={[StyleSheet.flatten(style), shared.shadow]} from={-200} to={10} duration={450}>
+            <FadeView style={{margin:10, bottom:-40}} from={0} to={1} duration={700}>
             <Icon name="close" size={30} color={'black'} onPress={onClick}></Icon>
             {
                 token ?
-                <>{SideBarAuthConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i}>{elem.name}</Link>)}</> :
-                <>{SideBarConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i}>{elem.name}</Link>)}</>
+                <>{SideBarAuthConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i} onPress={onClick}>{elem.name}</Link>)}</> :
+                <>{SideBarConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i} onPress={onClick}>{elem.name}</Link>)}</>
             }
             
-            </View>
-        </View>
+            </FadeView>
+            
+        </SlidingView>
     );
 }
 
