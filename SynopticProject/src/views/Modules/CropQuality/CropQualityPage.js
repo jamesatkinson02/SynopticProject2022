@@ -24,7 +24,7 @@ const CropQualityPage = () => {
       moistureLabels: [],
       moistureFrequency: 'Daily',
       currentMoisture: { data: [0] },
-      pHValue: 6.5,
+      pHValue: 3,
     },
     layout: {
       chartWrapperWidth: 10,
@@ -50,14 +50,15 @@ const CropQualityPage = () => {
   }, []);
 
   useEffect(() => {
-    http.post('/crop-quality/chart-data', {
+    http.post('/devices/chart-data', {
       deviceId: '17c1a13a0552aed9',
+      field: 'moisture',
       frequency: state.data.moistureFrequency
     }).then(res => {
-      let data = res.data.moisture.data.map(val => Math.round(val * 100));
+      let data = res.data.data.map(val => Math.round(val * 100));
 
       graphDataHandler('moistureData', data);
-      graphDataHandler('moistureLabels', res.data.moisture.labels);
+      graphDataHandler('moistureLabels', res.data.labels);
     });
   }, [state.data.moistureFrequency]);
 

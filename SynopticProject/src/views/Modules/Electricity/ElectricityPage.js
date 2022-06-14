@@ -1,11 +1,12 @@
 import PageWrapper from "../../../components/Layout/PageWrapper";
 
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import moduleReducer from "../../../reducers/moduleReducer";
 import { PillSelection, Pill } from "../../../components/Inputs/PillSelection";
 import Card from "../../../components/Layout/Card";
 import { Grid, GridItem } from "../../../components/Layout/Grid";
 import { View, Image } from "react-native";
+import http from "../../../../AxiosConfiguration";
 
 // Graphs
 import CurrentGeneration from "./Graphs/CurrentGeneration";
@@ -24,8 +25,10 @@ const ElectricityPage = () => {
       generationData: [200, 450, 280, 800, 990, 430, 560],
       usageFrequency: 'Daily',
       generationFrequency: 'Daily',
-      currentGeneration: { data: [0.6] },
-      currentUsage: { data: [0.6] },
+      usageLabels: [],
+      generationLabels: [],
+      currentUsage: 0,
+      currentGeneration: 1,
     },
     layout: {
       chartWrapperWidth: 10,
@@ -33,22 +36,57 @@ const ElectricityPage = () => {
     }
   });
 
+  const graphDataHandler = (field, val) => {
+    dispatch({ type: 'GRAPH DATA', field: field, payload: val })
+  };
+
   const setUsageFrequency = (freq) => {
-    dispatch({ type: 'GRAPH DATA', field: 'usageFrequency', payload: freq })
+    graphDataHandler('usageFrequency', freq);
   };
 
   const setGenerationFrequency = (freq) => {
-    dispatch({ type: 'GRAPH DATA', field: 'generationFrequency', payload: freq })
+    graphDataHandler('generationFrequency', freq);
   };
 
-  let usageLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
-  let generationLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+  useEffect(() => {
+    http.post('/electricity/current-data', {
+      deviceId: 'ea30d16ee48ffda8'
+    }).then(res => {
+      graphDataHandler('currentUsage', res.data.usage.data);
+      graphDataHandler('currentGeneration', res.data.generation.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    http.post('/devices/chart-data', {
+      deviceId: 'ea30d16ee48ffda8',
+      field: 'usage',
+      frequency: state.data.usageFrequency
+    }).then(res => {
+      graphDataHandler('usageData', res.data.data);
+      graphDataHandler('usageLabels', res.data.labels);
+    });
+  }, [state.data.usageFrequency]);
+
+  useEffect(() => {
+    http.post('/devices/chart-data', {
+      deviceId: 'ea30d16ee48ffda8',
+      field: 'generation',
+      frequency: state.data.generationFrequency
+    }).then(res => {
+      graphDataHandler('generationData', res.data.data);
+      graphDataHandler('generationLabels', res.data.labels);
+    });
+  }, [state.data.generationFrequency]);
+
+  let usageLabels = state.data.usageLabels;
+  let generationLabels = state.data.generationLabels;
 
   return(
     <PageWrapper title={'Electricity management'}>
       <Grid centered={true}>
         <GridItem onLayout={({ nativeEvent }) => dispatch({type: 'LAYOUT DATA', field: 'gridItemWrapperWidth', payload: nativeEvent.layout.width})} containerWidth={state.layout.gridItemWrapperWidth}>
-          <CurrentUsage containerPadding={shared.gridItem.padding} data={state.data.currentUsage} containerWidth={state.layout.gridItemWrapperWidth}/>
+          <CurrentUsage containerPadding={shared.gridItem.padding} data={state.data.currentUsage} max={state.data.currentGeneration} containerWidth={state.layout.gridItemWrapperWidth}/>
         </GridItem>
 
         <GridItem containerWidth={state.layout.gridItemWrapperWidth}>

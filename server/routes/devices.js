@@ -1,8 +1,19 @@
 const router = require('express').Router();
 const dotenv = require('dotenv');
 const db = require('../db');
+const { getDataWithFrequency } = require('./modules/shared');
 
 dotenv.config();
+
+router.route('/chart-data').post(async (req, res) => {
+  let deviceId = req.body.deviceId;
+  let field = req.body.field;
+  let frequency = req.body.frequency;
+
+  let data = await getDataWithFrequency(deviceId, field, frequency);
+
+  res.send(data);
+});
 
 router.route('/register-device').get(async (req, res) => {
   let deviceId = req.body.deviceId;
@@ -10,7 +21,6 @@ router.route('/register-device').get(async (req, res) => {
 
   console.log(username)
   console.log(deviceId)
-  return;
 
   if (deviceId.length == 0) {
     res.send({ err: "Please enter a device ID" });

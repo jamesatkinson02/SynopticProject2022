@@ -59,9 +59,7 @@ const InstalledModules = (props) => {
   ]);
 
   useEffect(() => {
-    http.get('/water/content-data').then(res => {
-      console.log(res.data)
-    })
+    
   }, []);
 
   return (

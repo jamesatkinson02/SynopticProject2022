@@ -5,15 +5,6 @@ const app = express();
 const db = require('./db');
 const jwtMiddleware = require('./middleware/jwtMiddleware');
 
-db.query('SELECT NOW()', (err, res) => {
-    if (err) {
-        console.error(err);
-        return;
-    }
-
-    console.log(res.rows[0]);
-});
-
 // Middlewares
 app.use(express.json());
 app.use(jwtMiddleware);

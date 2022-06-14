@@ -27,9 +27,6 @@ const getDataWithFrequency = async (deviceId, field, frequency, aggregate) => {
       startTime.setDate(startTime.getDate() - 7);
       break;
   }
-
-  console.log(startTime);
-  console.log(endTime);
   
   const query = `SELECT date_trunc('${freqSelect}', entry_timestamp) AS timestamp, ${aggregate === 'SUM' ? 'SUM' : 'AVG'}(value) AS data
   FROM device_data

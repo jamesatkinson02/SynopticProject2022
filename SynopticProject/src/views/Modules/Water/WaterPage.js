@@ -3,7 +3,8 @@ import PageWrapper from "../../../components/Layout/PageWrapper";
 import Card from "../../../components/Layout/Card";
 import { Grid, GridItem } from "../../../components/Layout/Grid";
 import { Pill, PillSelection } from "../../../components/Inputs/PillSelection";
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
+import http from "../../../../AxiosConfiguration";
 
 // Graphs
 import ContentChart from "./Graphs/ContentChart";
@@ -28,6 +29,7 @@ const WaterPage = () => {
       maxContent: 1000,
       contentData: [200, 450, 280, 800, 990, 430, 560],
       contentFrequency: 'Daily',
+      contentLabels: []
     },
     layout: {
       chartWrapperWidth: 10,
@@ -35,25 +37,37 @@ const WaterPage = () => {
     }
   });
 
-  let fillRatio = (state.data.currentContent / state.data.maxContent) * 175;
-
-  const setFrequency = (freq) => {
-    dispatch({type: 'GRAPH DATA', field: 'contentFrequency', payload: freq})
+  const graphDataHandler = (field, val) => {
+    dispatch({ type: 'GRAPH DATA', field: field, payload: val })
   };
 
-  let contentLabels;
-  switch (state.data.contentFrequency)
-  {
-    case 'Weekly':
-      contentLabels = ["25/04", "02/05", "09/05", "16/05", "23/05", "30/05"];
-      break;
-    case 'Monthly':
-      contentLabels = ["Dec", "Jan", "Feb", "Mar", "Apr", "May"];
-      break;
-    default:
-      contentLabels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"]
-      break;
-  }
+  const setFrequency = (freq) => {
+    graphDataHandler('contentFrequency', freq);
+  };
+
+  useEffect(() => {
+    http.post('/water/current-data', {
+      deviceId: 'f021d188ae2ba5ad'
+    }).then(res => {
+      graphDataHandler('currentContent', res.data.content.data);
+      graphDataHandler('clarityData', { data: [res.data.clarity.data] });
+      graphDataHandler('pHValue', res.data.ph.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    http.post('/devices/chart-data', {
+      deviceId: 'f021d188ae2ba5ad',
+      field: 'content',
+      frequency: state.data.contentFrequency
+    }).then(res => {
+      graphDataHandler('contentData', res.data.data);
+      graphDataHandler('contentLabels', res.data.labels);
+    });
+  }, [state.data.contentFrequency]);
+
+  let fillRatio = (state.data.currentContent / state.data.maxContent) * 175;
+  let contentLabels = state.data.contentLabels;
 
   return(
     <PageWrapper title={'Water management'}>
