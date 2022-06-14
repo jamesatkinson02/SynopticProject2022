@@ -54,17 +54,16 @@ const  Sidebar = ({style, onClick}) => {
     var { token, saveToken } = useContext(AuthContext);
 
     return(
-        <SlidingView style={[StyleSheet.flatten(style), shared.shadow]} from={-200} to={10} duration={450}>
+        <SlidingView style={style} from={-200} to={0} duration={450}>
             <FadeView style={{margin:10, bottom:-40}} from={0} to={1} duration={700}>
-            <Icon name="close" size={30} color={'black'} onPress={onClick}></Icon>
+            <Icon name="close" size={30} color={'black'} style={{marginLeft: 10}} onPress={onClick}></Icon>
             {
                 token ?
-                <>{SideBarAuthConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i} onPress={onClick}>{elem.name}</Link>)}</> :
-                <>{SideBarConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20}} key={i} onPress={onClick}>{elem.name}</Link>)}</>
+                <>{SideBarAuthConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20, marginLeft: 10}} key={i} onPress={onClick}>{elem.name}</Link>)}</> :
+                <>{SideBarConfig.map((elem, i) => <Link to={{screen:elem.route}} style={{fontSize:20, marginTop:20, marginLeft: 10}} key={i} onPress={onClick}>{elem.name}</Link>)}</>
             }
             
             </FadeView>
-            
         </SlidingView>
     );
 }

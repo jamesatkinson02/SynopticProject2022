@@ -15,6 +15,7 @@ const SlidingView = (props) => {
 
     return <Animated.View style={[
         shared.sideBarSheet,
+        shared.shadow,
         {transform: [
             {
               translateX: slideAnim,
