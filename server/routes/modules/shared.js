@@ -52,10 +52,8 @@ const getDataWithFrequency = async (deviceId, field, frequency, aggregate) => {
       dbRes.rows.map(entry => {
         data.push(entry.data.toFixed(2));
         
-
         let timestamp = new Date(entry.timestamp);
         let label = days[timestamp.getDay()];
-        console.log(timestamp)
 
         if (frequency === 'Weekly') {
           let date = timestamp.getDate().toString().padStart(2, 0);
@@ -73,4 +71,23 @@ const getDataWithFrequency = async (deviceId, field, frequency, aggregate) => {
   });
 };
 
-module.exports = { getDataWithFrequency };
+const getCurrentData = async (deviceId, field) => {
+  const query = `SELECT value AS data
+  FROM device_data
+  WHERE device_id=$1 AND field_name=$2
+  ORDER BY entry_timestamp DESC
+  LIMIT 1`;
+
+  return new Promise((resolve, reject) => {
+    db.query(query, [deviceId, field], (err, dbRes) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve(dbRes.rows[0]);
+    });
+  });
+};
+
+module.exports = { getDataWithFrequency, getCurrentData };

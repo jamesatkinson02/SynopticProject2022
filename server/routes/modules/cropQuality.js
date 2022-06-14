@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const dotenv = require('dotenv');
-const { getDataWithFrequency } = require('./shared')
+const { getDataWithFrequency, getCurrentData } = require('./shared')
 
 dotenv.config();
 
@@ -36,8 +36,17 @@ router.route('/chart-data').post(async (req, res) => {
   let frequency = req.body.frequency;
 
   let moistureData = await getDataWithFrequency(deviceId, 'moisture', frequency);
-  
+
   res.send({ moisture: moistureData });
+});
+
+router.route('/current-data').post(async (req, res) => {
+  let deviceId = req.body.deviceId;
+
+  let moistureData = await getCurrentData(deviceId, 'moisture');
+  let phData = await getCurrentData(deviceId, 'ph');
+  
+  res.send({ moisture: moistureData, ph: phData });
 });
 
 module.exports = router;

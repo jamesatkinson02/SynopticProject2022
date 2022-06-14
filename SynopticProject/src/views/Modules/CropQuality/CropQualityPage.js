@@ -32,25 +32,34 @@ const CropQualityPage = () => {
     }
   });
 
+  const graphDataHandler = (field, val) => {
+    dispatch({ type: 'GRAPH DATA', field: field, payload: val })
+  };
+
+  const setFrequency = (freq) => {
+    graphDataHandler('moistureFrequency', freq);
+  };
+
+  useEffect(() => {
+    http.post('/crop-quality/current-data', {
+      deviceId: '17c1a13a0552aed9'
+    }).then(res => {
+      graphDataHandler('currentMoisture', { data: [res.data.moisture.data] });
+      graphDataHandler('pHValue', res.data.ph.data);
+    });
+  }, []);
+
   useEffect(() => {
     http.post('/crop-quality/chart-data', {
       deviceId: '17c1a13a0552aed9',
       frequency: state.data.moistureFrequency
-    })
-    .then(res => {
+    }).then(res => {
       let data = res.data.moisture.data.map(val => Math.round(val * 100));
 
-      dispatch({ type: 'GRAPH DATA', field: 'moistureData', payload: data })
-      dispatch({ type: 'GRAPH DATA', field: 'moistureLabels', payload: res.data.moisture.labels })
-
-      console.log(res.data.moisture.data)
-      console.log(res.data.moisture.labels)
+      graphDataHandler('moistureData', data);
+      graphDataHandler('moistureLabels', res.data.moisture.labels);
     });
   }, [state.data.moistureFrequency]);
-
-  const setFrequency = (freq) => {
-    dispatch({ type: 'GRAPH DATA', field: 'moistureFrequency', payload: freq })
-  };
 
   let moistureLabels = state.data.moistureLabels;
   let rating = (Math.max(1 - (Math.abs(state.data.pHValue - 6.5) / 6.5), 0) + Math.max(1 - (Math.abs(state.data.currentMoisture.data - 0.4) / 0.4), 0)) / 2;
