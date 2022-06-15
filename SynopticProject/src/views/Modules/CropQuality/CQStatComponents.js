@@ -6,20 +6,24 @@ import { useReducer, useState, useEffect } from "react";
 import statReducer from "../../../reducers/statReducer";
 import http from "../../../../AxiosConfiguration";
 
-var moistureData = {
-  data: [0.6],
-};
-
 const CQStatComponents = (props) => {
   const [currentMoisture, setCurrentMoisture] = useState(0);
   const [pHValue, setPHValue] = useState(3);
 
-  useEffect(() => {
+  let updateData = () => {
     http.post('/crop-quality/current-data', {
       deviceId: props.deviceId
     }).then(res => {
       setCurrentMoisture(res.data.moisture.data);
       setPHValue(res.data.ph.data);
+    });
+  };
+
+  useEffect(() => {
+    updateData();
+
+    props.navigation.addListener('focus', () => {
+      updateData();
     });
   }, []);
 

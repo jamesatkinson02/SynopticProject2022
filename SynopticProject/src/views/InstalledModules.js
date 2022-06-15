@@ -55,7 +55,7 @@ const ModuleButton = (props) => {
         </View>
 
         <StatisticsContainer>
-          {<module.statComponents deviceId={props.deviceId}/> || <></>}
+          {<module.statComponents deviceId={props.deviceId} navigation={props.navigation}/> || <></>}
         </StatisticsContainer>
       </Card>
     </TouchableOpacity>
@@ -64,7 +64,6 @@ const ModuleButton = (props) => {
 
 const InstalledModules = (props) => {
   const { deviceData, saveDeviceData } = useContext(AuthContext);
-
 
   return (
     <PageWrapper title={'Installed devices'}>

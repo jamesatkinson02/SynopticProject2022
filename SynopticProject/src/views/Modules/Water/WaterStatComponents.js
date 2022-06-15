@@ -12,13 +12,21 @@ const WaterStatComponents = (props) => {
   const [currentClarity, setCurrentClarity] = useState(0);
   const [pHValue, setPHValue] = useState(3);
 
-  useEffect(() => {
+  let updateData = () => {
     http.post('/water/current-data', {
       deviceId: props.deviceId
     }).then(res => {
       setCurrentContent(res.data.content.data / waterMax);
       setCurrentClarity(res.data.clarity.data);
       setPHValue(res.data.ph.data);
+    });
+  };
+
+  useEffect(() => {
+    updateData();
+
+    props.navigation.addListener('focus', () => {
+      updateData();
     });
   }, []);
 
