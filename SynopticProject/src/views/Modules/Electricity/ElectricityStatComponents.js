@@ -11,12 +11,20 @@ const ElectricityStatComponents = (props) => {
   const [currentUsage, setCurrentUsage] = useState(0);
   const [currentGeneration, setCurrentGeneration] = useState(1);
 
-  useEffect(() => {
+  let updateData = () => {
     http.post('/electricity/current-data', {
-      deviceId: 'ea30d16ee48ffda8'
+      deviceId: props.deviceId
     }).then(res => {
       setCurrentUsage(res.data.usage.data);
       setCurrentGeneration(res.data.generation.data);
+    });
+  };
+
+  useEffect(() => {
+    updateData();
+
+    props.navigation.addListener('focus', () => {
+      updateData();
     });
   }, []);
 

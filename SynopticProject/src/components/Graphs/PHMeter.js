@@ -21,7 +21,7 @@ const phLabels = [
   },
   {
     key: 6,
-    name: 'Very Little Acid',
+    name: 'Slightly Acidic',
     labelColor:'#6beb34',
     activeBarColor:'#6beb34',
   },
@@ -33,7 +33,7 @@ const phLabels = [
   },
   {
     key: 8,
-    name: 'Very Little Alakali',
+    name: 'Slightly Alkaline',
     labelColor:'#34eba5',
     activeBarColor:'#34eba5',
   },

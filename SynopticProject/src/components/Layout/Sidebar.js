@@ -34,7 +34,7 @@ const SideBarAuthConfig = [
     iconName: '',
 },
 {
-    name:'Installed Modules',
+    name:'Modules',
     route:'InstalledModules',
     iconName: '',
 },

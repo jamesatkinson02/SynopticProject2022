@@ -19,17 +19,17 @@ const MODULES = {
   'WATER': {
     displayName: 'Water',
     route: 'Water',
-    statComponents: <WaterStatComponents/>,
+    statComponents: WaterStatComponents,
   },
   'ELECTRICITY': {
     displayName: 'Electricity',
     route: 'Electricity',
-    statComponents: <ElectricityStatComponents/>,
+    statComponents: ElectricityStatComponents,
   },
   'CROP_QUALITY': {
     displayName: 'Crop quality',
     route: 'CropQuality',
-    statComponents: <CQStatComponents/>,
+    statComponents: CQStatComponents,
   },
 };
 
@@ -51,11 +51,11 @@ const ModuleButton = (props) => {
       <Card marginTop={30} padding={10}>
         <View style={shared.moduleTopBar}>
           <RMText style={[textStyles.largerText, textStyles.textDark1]}>{name}</RMText>
-          <RMText style={[textStyles.textDark1]}>{props.deviceId}</RMText>
+          <RMText style={[textStyles.textDark1]}>{props.deviceId} - 100%</RMText>
         </View>
 
         <StatisticsContainer>
-          {module.statComponents || <></>}
+          {<module.statComponents deviceId={props.deviceId} navigation={props.navigation}/> || <></>}
         </StatisticsContainer>
       </Card>
     </TouchableOpacity>
@@ -65,9 +65,8 @@ const ModuleButton = (props) => {
 const InstalledModules = (props) => {
   const { deviceData, saveDeviceData } = useContext(AuthContext);
 
-
   return (
-    <PageWrapper title={'Installed modules'}>
+    <PageWrapper title={'Installed devices'}>
       { props.elements }
       {
         deviceData.map(device =>

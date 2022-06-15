@@ -68,7 +68,7 @@ const App = () => {
         {
           accessToken ? 
           <>
-            <Stack.Screen name="InstalledModules" component={InstalledModules} options={{title:'Installed Modules', 
+            <Stack.Screen name="InstalledModules" component={InstalledModules} options={{title:'Modules', 
             headerLeft: () => (<HamburgerSelector size={20} color={'black'} handleClick={() => setState(true)}></HamburgerSelector>)}}/>
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="Settings" component={Settings} />
