@@ -67,7 +67,7 @@ const InstalledModules = (props) => {
 
 
   return (
-    <PageWrapper title={'Installed modules'}>
+    <PageWrapper title={'Installed devices'}>
       { props.elements }
       {
         deviceData.map(device =>
