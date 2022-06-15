@@ -11,7 +11,10 @@ require (
 
 require (
 	github.com/andybalholm/brotli v1.0.4 // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/golang-jwt/jwt/v4 v4.4.1 // indirect
 	github.com/klauspost/compress v1.15.0 // indirect
+	github.com/omeid/pgerror v0.0.0-20201018020948-42c66c4d27d4 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.37.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
