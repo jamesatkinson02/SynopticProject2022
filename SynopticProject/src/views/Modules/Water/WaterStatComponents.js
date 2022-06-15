@@ -14,7 +14,7 @@ const WaterStatComponents = (props) => {
 
   useEffect(() => {
     http.post('/water/current-data', {
-      deviceId: 'f021d188ae2ba5ad'
+      deviceId: props.deviceId
     }).then(res => {
       setCurrentContent(res.data.content.data / waterMax);
       setCurrentClarity(res.data.clarity.data);

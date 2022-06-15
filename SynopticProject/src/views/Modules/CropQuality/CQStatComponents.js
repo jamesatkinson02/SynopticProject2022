@@ -16,7 +16,7 @@ const CQStatComponents = (props) => {
 
   useEffect(() => {
     http.post('/crop-quality/current-data', {
-      deviceId: '17c1a13a0552aed9'
+      deviceId: props.deviceId
     }).then(res => {
       setCurrentMoisture(res.data.moisture.data);
       setPHValue(res.data.ph.data);

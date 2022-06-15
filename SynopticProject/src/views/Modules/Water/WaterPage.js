@@ -28,7 +28,7 @@ const WaterPage = ({ route }) => {
     data: {
       pHValue: 7,
       clarityData: { data: [0.6] },
-      currentContent: 650,
+      currentContent: 0,
       maxContent: 1000,
       contentData: [200, 450, 280, 800, 990, 430, 560],
       contentFrequency: 'Daily',
