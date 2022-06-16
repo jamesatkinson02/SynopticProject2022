@@ -3,7 +3,7 @@ FROM alpine
 
 # copy directory to ~/synoptic
 COPY . ~/synoptic
-WORKDIR ~/synoptic/src
+WORKDIR ~/synoptic
 
 # install golang
 RUN apk add --update go
