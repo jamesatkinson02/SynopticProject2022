@@ -27,4 +27,4 @@ setInterval(() => {
   let moisture = 0 + Math.round(Math.random() * 100);
   insertDeviceData(cqDeviceId, "ph", cqPH);
   insertDeviceData(cqDeviceId, "moisture", moisture);
-}, deviceInterval)
+}, deviceInterval);

@@ -12,11 +12,11 @@ const jwtMiddleware = (req, res, next) => {
       console.log(err)
       
       req.body.tokenPayload = decoded;
-      console.log(decoded)
+      console.log(decoded);
       req.body.tokenValid = decoded != null;
     });
   } else {
-    jwt.verify(refreshToken, process.env.JWT_KEY, (err, decoded) => {
+    jwt.verify(refreshToken, process.env.TOKEN_SECRET, (err, decoded) => {
       req.body.tokenPayload = decoded;
       req.body.tokenValid = decoded != null;
     });

@@ -59,7 +59,7 @@ router.route('/sign-up').post(async (req, res) => {
         const accessToken = jwt.sign(
           { username: accData.username },
           process.env.TOKEN_SECRET,
-          { expiresIn: "1h" }
+          { expiresIn: "12h" }
         );
 
         const refreshToken = jwt.sign({username: accData.username}, process.env.TOKEN_SECRET, {
@@ -114,7 +114,7 @@ router.route('/login').post(async (req, res) => {
         const accessToken = jwt.sign(
           { username: accData.username },
           process.env.TOKEN_SECRET,
-          { expiresIn: "1h" }
+          { expiresIn: "12h" }
         );
 
         const refreshToken = jwt.sign({username: accData.username}, process.env.TOKEN_SECRET, {

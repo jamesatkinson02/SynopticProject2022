@@ -69,7 +69,7 @@ const InstalledModules = (props) => {
     <PageWrapper title={'Installed devices'}>
       { props.elements }
       {
-        deviceData.map(device =>
+        (deviceData || []).map(device =>
           <ModuleButton
             moduleType={device.type}
             deviceId={device.device_id}
