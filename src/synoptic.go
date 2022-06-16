@@ -33,24 +33,24 @@ func signup(c *fiber.Ctx, db *sql.DB) error{
 	}
 
 	/* username is empty */
-	if len(payload.Username) < 0 {
+	if payload.Username == "" {
 		return c.JSON(&fiber.Map{"err": "Please enter a username..."});
 	}
 
 	/* password is empty */
-	if len(payload.Password) < 0 {
+	if payload.Password == "" {
 		return c.JSON(&fiber.Map{"err": "Please enter a password..."});
 	}
 
-	/* forename is empty */
-	if len(payload.Forename) < 0 {
-		return c.JSON(&fiber.Map{"err": "Please enter a first name..."});
-	}
+//	/* forename is empty */
+//	if payload.Forename == "" {
+//		return c.JSON(&fiber.Map{"err": "Please enter a first name..."});
+//	}
 
 	/* surname is empty */
-	if len(payload.Surname) < 0 {
-		return c.JSON(&fiber.Map{"err": "Please enter a last name..."});
-	}
+//	if payload.Surname == "" {
+//		return c.JSON(&fiber.Map{"err": "Please enter a last name..."});
+//	}
 
 	/* hash password */
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(payload.Password), bcrypt.DefaultCost)
@@ -131,12 +131,12 @@ func login(c *fiber.Ctx, db *sql.DB) error{
 	}
 
 	/* username is empty */
-	if len(payload.Username) < 0 {
+	if payload.Username == "" {
 		return c.JSON(&fiber.Map{"err": "Please enter a username..."});
 	}
 
 	/* password is empty */
-	if len(payload.Password) < 0 {
+	if payload.Password == "" {
 		return c.JSON(&fiber.Map{"err": "Please enter a password..."});
 	}
 
@@ -195,7 +195,7 @@ func login(c *fiber.Ctx, db *sql.DB) error{
 		where owner = $1`
 
 	/* query the database! */
-	rows, err := db.Query(sqlStatement, payload.Username)
+	rows, err = db.Query(sqlStatement, payload.Username)
 
 	/* sql select failed */
 	if err != nil {
@@ -256,7 +256,7 @@ func registerdevice(c *fiber.Ctx, db *sql.DB) error{
 	}
 
 	/* device id is empty */
-	if len(payload.DeviceId) < 0 {
+	if payload.DeviceId == "" {
 		return c.JSON(&fiber.Map{"err": "Please enter a username..."});
 	}
 
@@ -267,7 +267,7 @@ func registerdevice(c *fiber.Ctx, db *sql.DB) error{
 		where device_id = $1`
 
 	/* insert the data! */
-	rows, err = db.Exec(
+	rows, err := db.Query(
 		sqlStatement,
 		payload.DeviceId)
 
@@ -285,6 +285,8 @@ func registerdevice(c *fiber.Ctx, db *sql.DB) error{
 		/* something else went wrong */
 		return c.JSON(&fiber.Map{"err": "Failed to write to database..."});
 	}
+
+	return nil
 }
 
 func main(){
